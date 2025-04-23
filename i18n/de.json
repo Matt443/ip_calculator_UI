@@ -1,0 +1,19 @@
+{
+  "welcome": "Wilkommen",
+  "ipTypes": {
+    "default": "IPv4",
+    "decimal": "Dezimal",
+    "binary": "Binär",
+    "shorthand": "Kurznotation"
+  },
+  "info": {
+    "ip": {
+      "type": "IP-Typ",
+      "label": "IP-Adresse"
+    },
+    "mask": {
+      "type": "Masken-Typ",
+      "label": "Masken-Adresse"
+    }
+  }
+}
