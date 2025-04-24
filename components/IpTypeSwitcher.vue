@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import type { IpType } from "~/types/store.types";
 
-const state = useStateStore();
+const props = defineProps({
+  clickCallback: {
+    type: Function,
+    required: true,
+  },
+  classCallback: {
+    type: Function,
+    required: true,
+  },
+});
 
 const ipTypes: IpType[] = ["default", "binary", "decimal", "shorthand"];
 </script>
@@ -15,8 +24,8 @@ const ipTypes: IpType[] = ["default", "binary", "decimal", "shorthand"];
       v-for="type in ipTypes"
       :key="type"
       class="type-container p-1 w-[100%] text-center hover:bg-stone-700 hover:text-stone-200"
-      :class="{ active: state.getCurrentType === type }"
-      @click="state.changeType(type)"
+      :class="{ active: classCallback() === type }"
+      @click="props.clickCallback(type)"
     >
       {{ $t(`ipTypes.${type}`) }}
     </div>
