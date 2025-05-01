@@ -49,9 +49,9 @@ function changeEvent(event: Event, index: number) {
         ref="input"
     >
         <div class="ipv4-input-label pr-1 whitespace-nowrap">
-            <slot name="label">Your ipv4:</slot>
+            <slot name="label">Your binary ip:</slot>
         </div>
-        <div class="binary-input-container flex w-[100%]">
+        <div class="binary-input-container flex w-[100%] my-2">
             <input
                 type="text"
                 pattern="[01]{8}"
@@ -61,7 +61,7 @@ function changeEvent(event: Event, index: number) {
             />
             <span class="text-3x1 font-bold px-1">.</span>
         </div>
-        <div class="binary-input-container flex w-[100%]">
+        <div class="binary-input-container flex w-[100%] my-2">
             <input
                 type="text"
                 pattern="[01]{8}"
@@ -71,7 +71,7 @@ function changeEvent(event: Event, index: number) {
             />
             <span class="text-3x1 font-bold px-1">.</span>
         </div>
-        <div class="binary-input-container flex w-[100%]">
+        <div class="binary-input-container flex w-[100%] my-2">
             <input
                 type="text"
                 pattern="[01]{8}"
@@ -81,7 +81,7 @@ function changeEvent(event: Event, index: number) {
             />
             <span class="text-3x1 font-bold px-1">.</span>
         </div>
-        <div class="binary-input-container flex w-[100%]">
+        <div class="binary-input-container flex w-[100%] my-2">
             <input
                 type="text"
                 pattern="[01]{8}"

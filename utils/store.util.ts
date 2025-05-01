@@ -1,6 +1,7 @@
 import type {
     IpAddressType,
     IpBinaryType,
+    IpDecimalType,
     IpType,
     IpV4Type,
 } from "~/types/store.type";
@@ -55,6 +56,22 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
          */
         resetAddress(): IpBinaryType {
             return ["", "", "", ""];
+        },
+    },
+    decimal: {
+        changeAddress(newVal): IpAddressType {
+            return newVal;
+        },
+        resetAddress(): IpDecimalType {
+            return 0;
+        },
+    },
+    shorthand: {
+        changeAddress(newVal): IpAddressType {
+            return newVal;
+        },
+        resetAddress(): IpDecimalType {
+            return 0;
         },
     },
 };

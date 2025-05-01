@@ -42,4 +42,26 @@ const props = defineProps({
             <span>{{ $t(address.label) }}:</span>
         </template>
     </BinaryIpInput>
+    <IpNumberInput
+        v-if="type.getter() === 'decimal'"
+        :change-callback="address.changeCallback"
+        :max="4294967295"
+        additional-input-class="max-w-[250px]"
+    >
+        <template #label>
+            <span>{{ $t(address.label) }}:</span>
+        </template>
+    </IpNumberInput>
+    <IpNumberInput
+        v-if="type.getter() === 'shorthand'"
+        :change-callback="address.changeCallback"
+        additional-input-class="max-w-[150px]"
+    >
+        <template #label>
+            <span>{{ $t(address.label) }}:</span>
+        </template>
+        <template #beforeInput>
+            <span class="mr-1">/</span>
+        </template>
+    </IpNumberInput>
 </template>
