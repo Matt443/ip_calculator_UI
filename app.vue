@@ -4,9 +4,9 @@ state.changeLanguage("en");
 </script>
 
 <template>
-  <UApp>
-    <NuxtLayout class="layouts">
-      <NuxtPage />
-    </NuxtLayout>
-  </UApp>
+    <UApp>
+        <NuxtLayout class="layouts">
+            <NuxtPage />
+        </NuxtLayout>
+    </UApp>
 </template>
