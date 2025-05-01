@@ -1,5 +1,4 @@
 import type { IpStateType, IpType, LanguageType } from "~/types/store.type";
-import { changeAddress } from "~/utils/store.util";
 
 export const useStateStore = defineStore("state", {
     state: () => ({
@@ -24,21 +23,21 @@ export const useStateStore = defineStore("state", {
         },
         changeIpType(type: IpType) {
             this.ip.type = type;
+            this.ip.address = anyIp[this.ip.type].resetAddress();
         },
         changeMaskType(type: IpType) {
             this.mask.type = type;
+            this.mask.address = anyIp[this.mask.type].resetAddress();
         },
         changeIpAdress(value: number | string, index: number = 0) {
-            this.ip.address = changeAddress(
-                this.ip.type,
+            this.ip.address = anyIp[this.ip.type].changeAddress(
                 this.ip.address,
                 value,
                 index,
             );
         },
         changeMaskAdress(value: number | string, index: number = 0) {
-            this.mask.address = changeAddress(
-                this.mask.type,
+            this.mask.address = anyIp[this.mask.type].changeAddress(
                 this.mask.address,
                 value,
                 index,
