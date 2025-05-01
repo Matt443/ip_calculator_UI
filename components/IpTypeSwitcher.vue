@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IpType } from "~/types/store.types";
+import type { IpType } from "~/types/store.type";
 
 const props = defineProps({
     clickCallback: {

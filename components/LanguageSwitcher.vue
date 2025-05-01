@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { availableLanguages } from "@/config/config";
-import type { LanguageType } from "~/types/store.types";
+import type { LanguageType } from "~/types/store.type";
 
 const { setLocale } = useI18n();
 const state = useStateStore();

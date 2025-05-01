@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type {
-    IpTypeSettingType,
-    IpValueSettingType,
-} from "~/types/props.types";
+import type { IpTypeSettingType, IpValueSettingType } from "~/types/props.type";
 
 const state = useStateStore();
 
@@ -27,12 +24,22 @@ const props = defineProps({
             <span>{{ $t(type.label) }}:</span>
         </template>
     </IpTypeSwitcher>
-    <ipv4Input
+    <Ipv4Input
+        v-if="type.getter() === 'default'"
         :change-callback="address.changeCallback"
         :value-getter="address.valueGetter"
     >
         <template #label>
             <span>{{ $t(address.label) }}:</span>
         </template>
-    </ipv4Input>
+    </Ipv4Input>
+    <BinaryIpInput
+        v-if="type.getter() === 'binary'"
+        :getter-callback="address.valueGetter"
+        :change-callback="address.changeCallback"
+    >
+        <template #label>
+            <span>{{ $t(address.label) }}:</span>
+        </template>
+    </BinaryIpInput>
 </template>

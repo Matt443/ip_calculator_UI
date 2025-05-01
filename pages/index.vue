@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IpSettingType } from "~/types/props.types";
+import type { IpSettingType } from "~/types/props.type";
 
 const state = useStateStore();
 
@@ -35,7 +35,7 @@ const maskInputConfig: IpSettingType = {
 <template>
     <div class="bg-stone-950 w-[100%] h-[100%] text-stone-100">
         <LanguageSwitcher />
-        <div class="content-container w-[1000px] m-auto">
+        <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
             <IpInput
                 :type="ipInputConfig.type"
                 :address="ipInputConfig.address"

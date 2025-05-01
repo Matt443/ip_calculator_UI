@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { setFocusToNext } from "~/middlewares/nodelist.middleware";
+import { setFocusToNext } from "~/utils/nodelist.util";
+import { inputClasses } from "~/consts/tailwind";
 
 const props = defineProps({
     valueGetter: {
@@ -39,50 +40,50 @@ function changeEvent(index: number) {
 }
 const min = 0;
 const max = 255;
-const inputClasses = "flex w-[100px] bg-green-600 text-center octet-input";
+
+const ipV4Classes: string = "w-[100%]";
 </script>
 
 <template>
-    <div ref="input" class="ipv4-input-container flex flex-row relative py-2">
-        <div class="ipv4-input-label pr-1">
+    <div
+        ref="input"
+        class="ipv4-input-container flex flex-row relative py-3 items-end"
+    >
+        <div class="ipv4-input-label pr-1 whitespace-nowrap">
             <slot name="label">Your ipv4:</slot>
         </div>
         <input
             v-model="ip[0]"
             type="number"
-            orientation="vertical"
             :min
             :max
-            :class="inputClasses"
+            :class="`${inputClasses} octet-input ${ipV4Classes}`"
             @input="changeEvent(0)"
         />
         <span class="text-3x1 font-bold px-1">.</span>
         <input
             v-model="ip[1]"
             type="number"
-            orientation="vertical"
             :min
             :max
-            :class="inputClasses"
+            :class="`${inputClasses} octet-input ${ipV4Classes}`"
             @input="changeEvent(1)"
         />
         <span class="text-3x1 font-bold px-1">.</span>
         <input
             v-model="ip[2]"
-            orientation="vertical"
             :min
             :max
-            :class="inputClasses"
+            :class="`${inputClasses} octet-input ${ipV4Classes}`"
             @input="changeEvent(2)"
         />
         <span class="text-3x1 font-bold px-1">.</span>
         <input
             v-model="ip[3]"
             type="number"
-            orientation="vertical"
             :min
             :max
-            :class="inputClasses"
+            :class="`${inputClasses} octet-input ${ipV4Classes}`"
             @input="changeEvent(3)"
         />
     </div>

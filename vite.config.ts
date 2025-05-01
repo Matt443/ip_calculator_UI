@@ -3,5 +3,5 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [tsconfigPaths({ root: "./" }), tailwindcss()],
+    plugins: [tsconfigPaths({ root: "./" }), tailwindcss()],
 });
