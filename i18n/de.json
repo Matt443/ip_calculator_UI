@@ -6,7 +6,7 @@
     "binary": "Binär",
     "shorthand": "Kurznotation"
   },
-  "info": {
+  "inputs": {
     "ip": {
       "type": "IP-Typ",
       "label": "IP-Adresse"
@@ -16,5 +16,9 @@
       "label": "Masken-Adresse"
     },
     "button": "Vollständige IP-Informationen abrufen"
+  },
+  "info": {
+    "networkAddress": "Netzwerkadresse",
+    "broadcastAddress": "Broadcast-Adresse"
   }
 }
