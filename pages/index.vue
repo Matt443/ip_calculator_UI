@@ -2,8 +2,11 @@
 import IpAllFormats from "~/components/IpAllFormats.vue";
 import { buttonClasses } from "~/consts/tailwind";
 import type { IpSettingType } from "~/types/props.type";
+import networkInfo from "~/sample/networkInfo.json";
 
 const state = useStateStore();
+const { result } = networkInfo;
+console.log(result);
 
 const ipInputConfig: IpSettingType = {
     type: {
@@ -35,7 +38,7 @@ const maskInputConfig: IpSettingType = {
 </script>
 
 <template>
-    <div class="bg-stone-950 w-[100%] h-[100%] text-stone-100">
+    <div class="bg-stone-950 w-[100%] min-h-[100%] text-stone-100">
         <LanguageSwitcher />
         <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
             <div class="inputs-container">
@@ -58,47 +61,100 @@ const maskInputConfig: IpSettingType = {
                     >{{ $t("inputs.button") }}</UButton
                 >
             </div>
-            <div
-                class="type-headings-container lg:flex flex-row flex-wrap hidden"
-            >
-                <div class="type-heading w-[20%] text-center"></div>
-                <div class="type-heading w-[20%] text-center">
-                    {{ $t("ipTypes.default") }}
+            <div class="network-info-container py-4 text-sm">
+                <div
+                    class="type-headings-container lg:flex flex-row flex-wrap hidden text-md"
+                >
+                    <div class="type-heading w-[17.5%] text-center"></div>
+                    <div class="type-heading w-[20%] text-center">
+                        {{ $t("ipTypes.default") }}
+                    </div>
+                    <div class="type-heading w-[40%] text-center">
+                        {{ $t("ipTypes.binary") }}
+                    </div>
+                    <div class="type-heading w-[15%] text-center">
+                        {{ $t("ipTypes.decimal") }}
+                    </div>
+                    <div class="type-heading w-[7.5%] text-center">
+                        {{ $t("ipTypes.shorthand") }}
+                    </div>
                 </div>
-                <div class="type-heading w-[40%] text-center">
-                    {{ $t("ipTypes.binary") }}
-                </div>
-                <div class="type-heading w-[10%] text-center">
-                    {{ $t("ipTypes.decimal") }}
-                </div>
-                <div class="type-heading w-[10%] text-center">
-                    {{ $t("ipTypes.shorthand") }}
-                </div>
+                <IpAllFormats
+                    :default="result.networkAddress.ip"
+                    :mask-shorthand="result.ipMask.shorthand"
+                    :binary="result.networkAddress.binary"
+                    :decimal="result.networkAddress.decimal"
+                    :shorthand="result.broadcastAddress.shorthand"
+                    :format-signature-class="``"
+                >
+                    <template #addressName>
+                        <span class="whitespace-nowrap font-bold">{{
+                            $t("ipTypes.default")
+                        }}</span>
+                    </template>
+                </IpAllFormats>
+                <IpAllFormats
+                    :default="result.broadcastAddress.ip"
+                    :mask-shorthand="result.ipMask.shorthand"
+                    :binary="result.broadcastAddress.binary"
+                    :decimal="result.broadcastAddress.decimal"
+                    :shorthand="result.broadcastAddress.shorthand"
+                    :format-signature-class="`lg:hidden`"
+                >
+                    <template #addressName>
+                        <span class="whitespace-nowrap font-bold">{{
+                            $t("info.broadcastAddress")
+                        }}</span>
+                    </template>
+                </IpAllFormats>
+                <IpAllFormats
+                    :default="result.ipMask.ip"
+                    :mask-shorthand="result.ipMask.shorthand"
+                    :binary="result.ipMask.binary"
+                    :decimal="result.ipMask.decimal"
+                    :shorthand="result.ipMask.shorthand"
+                    :format-signature-class="`lg:hidden`"
+                >
+                    <template #addressName>
+                        <span class="whitespace-nowrap font-bold">{{
+                            $t("info.ipMask")
+                        }}</span>
+                    </template></IpAllFormats
+                >
+                <IpAllFormats
+                    :default="result.hosts.first.ip"
+                    :mask-shorthand="result.ipMask.shorthand"
+                    :binary="result.hosts.first.binary"
+                    :decimal="result.hosts.first.decimal"
+                    :shorthand="result.hosts.first.shorthand"
+                    :format-signature-class="`lg:hidden`"
+                >
+                    <template #addressName>
+                        <span class="whitespace-nowrap font-bold">{{
+                            $t("info.hostFirst")
+                        }}</span>
+                    </template></IpAllFormats
+                >
+                <IpAllFormats
+                    :default="result.hosts.last.ip"
+                    :mask-shorthand="result.ipMask.shorthand"
+                    :binary="result.hosts.last.binary"
+                    :decimal="result.hosts.last.decimal"
+                    :shorthand="result.hosts.last.shorthand"
+                    :format-signature-class="`lg:hidden`"
+                >
+                    <template #addressName>
+                        <span class="whitespace-nowrap font-bold">{{
+                            $t("info.hostLast")
+                        }}</span>
+                    </template></IpAllFormats
+                >
+                <HostQuantity>
+                    <template #hostQuantity>
+                        {{ result.hosts.quantity }}
+                    </template>
+                </HostQuantity>
             </div>
-            <IpAllFormats
-                :default="[192, 168, 0, 1]"
-                :mask-shorthand="9"
-                :binary="['11111111', '11111111', '11111111', '00000000']"
-                :decimal="10"
-                :format-signature-class="``"
-            >
-                <template #addressName>
-                    <span>{{ $t("ipTypes.default") }}</span>
-                </template>
-            </IpAllFormats>
-            <IpAllFormats
-                :default="[192, 168, 0, 1]"
-                :mask-shorthand="24"
-                :binary="['11111111', '11111111', '11111111', '00000000']"
-                :decimal="10"
-                :format-signature-class="`lg:hidden`"
-            >
-                <template #addressName>
-                    <span class="whitespace-nowrap">{{
-                        $t("info.broadcastAddress")
-                    }}</span>
-                </template>
-            </IpAllFormats>
         </div>
     </div>
 </template>

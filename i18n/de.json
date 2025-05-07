@@ -19,6 +19,9 @@
   },
   "info": {
     "networkAddress": "Netzwerkadresse",
-    "broadcastAddress": "Broadcast-Adresse"
+    "broadcastAddress": "Broadcast-Adresse",
+    "ipMask": "Maske",
+    "hostFirst": "Erster Host",
+    "hostLast": "Erster Host"
   }
 }

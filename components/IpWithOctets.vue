@@ -23,7 +23,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="ipv4-container flex py-2">
+    <div class="ipv4-container flex py-2 flex-row w-[100%]">
         <slot name="beforeAddress"></slot>
         <div
             v-for="(octet, index) in address"

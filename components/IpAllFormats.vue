@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { hostsPartClasses, networkPartClasses } from "~/consts/tailwind";
 
-const state = useStateStore();
-
 interface Props {
-    default: [number, number, number, number];
-    binary: [string, string, string, string];
+    default: number[];
+    binary: string[];
     decimal: number;
     shorthand?: number;
     maskShorthand: number;
@@ -57,16 +55,20 @@ calculateBreak(props.maskShorthand);
         <div
             class="ip-comparison-row flex flex-col lg:flex-row w-[100%] flex-wrap"
         >
+            <USeparator
+                :class="'bg-green-900 h-[2px] lg:hidden mt-2'"
+                type="solid"
+            />
             <div
-                class="comparison-cell p-2 w-[20%] text-center flex justify-center flex-col"
+                class="comparison-cell lg:p-2 px-1 py-2 lg:w-[17.5%] lg:text-center flex justify-center flex-col w-[100%]"
             >
                 <slot name="addressName"></slot>
             </div>
             <div
-                class="comparison-cell p-2 w-[20%] text-center flex lg:flex-col flex-row"
+                class="comparison-cell lg:p-2 px-1 w-[20%] text-center flex lg:flex-col flex-row"
             >
-                <span :class="`${formatSignatureClass} py-2 lg:hidden`">
-                    {{ $t("ipTypes.default") }}
+                <span :class="`${formatSignatureClass} py-2 pr-2 lg:hidden`">
+                    {{ $t("ipTypes.default") }}:
                 </span>
                 <IpWithOctets
                     :address="default"
@@ -74,10 +76,10 @@ calculateBreak(props.maskShorthand);
                 ></IpWithOctets>
             </div>
             <div
-                class="comparison-cell p-2 text-center flex lg:flex-col flex-row w-[40%]"
+                class="comparison-cell lg:p-2 px-1 text-center flex lg:flex-col flex-row lg:w-[40%] w-[100%]"
             >
-                <span :class="`${formatSignatureClass} py-2 lg:hidden`">
-                    {{ $t("ipTypes.default") }}
+                <span :class="`${formatSignatureClass} py-2 pr-2 lg:hidden`">
+                    {{ $t("ipTypes.binary") }}:
                 </span>
                 <IpWithOctets
                     :address="binary"
@@ -87,20 +89,20 @@ calculateBreak(props.maskShorthand);
                 ></IpWithOctets>
             </div>
             <div
-                class="comparison-cell p-2 text-center flex lg:flex-col flex-row w-[10%]"
+                class="comparison-cell lg:p-2 px-1 text-center flex lg:flex-col flex-row w-[15%]"
             >
-                <span :class="`${formatSignatureClass} py-2 lg:hidden`">
-                    {{ $t("ipTypes.default") }}
+                <span :class="`${formatSignatureClass} py-2 pr-2 lg:hidden`">
+                    {{ $t("ipTypes.decimal") }}:
                 </span>
                 <NumberIp :ip="String(decimal)"></NumberIp>
             </div>
             <div
-                class="comparison-cell p-2 text-center flex lg:flex-col flex-row w-[10%]"
+                class="comparison-cell lg:p-2 px-1 text-center flex lg:flex-col flex-row w-[7.5%]"
             >
-                <span :class="`${formatSignatureClass} py-2 lg:hidden`">
-                    {{ $t("ipTypes.default") }}
+                <span :class="`${formatSignatureClass} py-2 pr-2 lg:hidden`">
+                    {{ $t("ipTypes.shorthand") }}:
                 </span>
-                <span>{{ shorthand }}</span>
+                <NumberIp :ip="String(shorthand ? shorthand : '-')"></NumberIp>
             </div>
         </div>
     </div>

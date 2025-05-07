@@ -2,7 +2,7 @@
 const props = defineProps({
     ip: {
         type: String,
-        default: "",
+        default: "-",
     },
 });
 </script>
@@ -14,6 +14,6 @@ const props = defineProps({
             {{ ip }}
         </span>
         <slot name="AfterIp"></slot>
-        <CopyButton :to-copy="ip"></CopyButton>
+        <CopyButton v-if="ip !== '-'" :to-copy="ip"></CopyButton>
     </div>
 </template>

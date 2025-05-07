@@ -19,6 +19,9 @@
   },
   "info": {
     "networkAddress": "Network address",
-    "broadcastAddress": "Broadcast address"
+    "broadcastAddress": "Broadcast address",
+    "ipMask": "Mask",
+    "hostFirst": "First host",
+    "hostLast": "Last host"
   }
 }
