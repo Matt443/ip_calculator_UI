@@ -16,9 +16,9 @@ function changeLanguage(name: LanguageType) {
 </script>
 
 <template>
-    <div class="language-switcher-container">
+    <div class="language-switcher-container w-[100%]">
         <button
-            class="current-lang w-full flex bg-stone-950 items-center"
+            class="current-lang w-full flex bg-stone-950 items-center absolute left-[0] h-[42px]"
             popovertarget="my-popover"
         >
             <img
@@ -28,7 +28,11 @@ function changeLanguage(name: LanguageType) {
             />
             <span>{{ state.getCurrentLanguage }}</span>
         </button>
-        <div id="my-popover" class="langs-container m-2 items-center" popover>
+        <div
+            id="my-popover"
+            class="langs-container m-2 items-center absolute bottom-[0]"
+            popover
+        >
             <div
                 v-for="lang in availableLanguages"
                 :key="lang"

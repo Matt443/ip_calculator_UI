@@ -6,7 +6,6 @@ import networkInfo from "~/sample/networkInfo.json";
 
 const state = useStateStore();
 const { result } = networkInfo;
-console.log(result);
 
 const ipInputConfig: IpSettingType = {
     type: {
@@ -38,8 +37,7 @@ const maskInputConfig: IpSettingType = {
 </script>
 
 <template>
-    <div class="bg-stone-950 w-[100%] min-h-[100%] text-stone-100">
-        <LanguageSwitcher />
+    <div class="bg-stone-950 w-[100%] min-h-[100%] text-stone-100 pt-[50px]">
         <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
             <div class="inputs-container">
                 <IpInput
