@@ -43,63 +43,6 @@ const props = defineProps<{
                 }}</span>
             </template>
         </IpAllFormats>
-        <!-- 
-            <IpAllFormats
-                :default="result.broadcastAddress.ip"
-                :mask-shorthand="result.ipMask.shorthand"
-                :binary="result.broadcastAddress.binary"
-                :decimal="result.broadcastAddress.decimal"
-                :shorthand="result.broadcastAddress.shorthand"
-                :format-signature-class="`lg:hidden`"
-            >
-                <template #addressName>
-                    <span class="whitespace-nowrap font-bold">{{
-                        $t("info.broadcastAddress")
-                    }}</span>
-                </template>
-            </IpAllFormats>
-            <IpAllFormats
-                :default="result.ipMask.ip"
-                :mask-shorthand="result.ipMask.shorthand"
-                :binary="result.ipMask.binary"
-                :decimal="result.ipMask.decimal"
-                :shorthand="result.ipMask.shorthand"
-                :format-signature-class="`lg:hidden`"
-            >
-                <template #addressName>
-                    <span class="whitespace-nowrap font-bold">{{
-                        $t("info.ipMask")
-                    }}</span>
-                </template></IpAllFormats
-            >
-            <IpAllFormats
-                :default="result.hosts.first.ip"
-                :mask-shorthand="result.ipMask.shorthand"
-                :binary="result.hosts.first.binary"
-                :decimal="result.hosts.first.decimal"
-                :shorthand="result.hosts.first.shorthand"
-                :format-signature-class="`lg:hidden`"
-            >
-                <template #addressName>
-                    <span class="whitespace-nowrap font-bold">{{
-                        $t("info.hostFirst")
-                    }}</span>
-                </template></IpAllFormats
-            >
-            <IpAllFormats
-                :default="result.hosts.last.ip"
-                :mask-shorthand="result.ipMask.shorthand"
-                :binary="result.hosts.last.binary"
-                :decimal="result.hosts.last.decimal"
-                :shorthand="result.hosts.last.shorthand"
-                :format-signature-class="`lg:hidden`"
-            >
-                <template #addressName>
-                    <span class="whitespace-nowrap font-bold">{{
-                        $t("info.hostLast")
-                    }}</span>
-                </template></IpAllFormats
-            >-->
         <HostQuantity>
             <template #hostQuantity>
                 {{ hostQuantity }}

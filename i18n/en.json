@@ -27,6 +27,7 @@
   },
   "subnets": {
     "quantity": "Subnets quantity",
+    "name": "Subnet",
     "calculating": {
       "method": "Subnets calculating method",
       "host": "Host quantity",
