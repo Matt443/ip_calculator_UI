@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { setFocusToNext } from "~/utils/nodelist.util";
-import { inputClasses } from "~/consts/tailwind";
+import { inputClasses } from "~/consts/tailwind.const";
 
 const props = defineProps({
     valueGetter: {

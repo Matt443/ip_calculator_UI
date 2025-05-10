@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { buttonClasses } from "~/consts/tailwind";
+import { buttonClasses } from "~/consts/tailwind.const";
 import useClipboard from "vue-clipboard3";
 
 const props = defineProps({

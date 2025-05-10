@@ -8,6 +8,7 @@ html,
   margin: 0;
   padding: 0;
   height: -webkit-fill-available;
+  background-color: var(--color-stone-950);
 }
 
 Chrome,

@@ -14,7 +14,9 @@ state.changeLanguage("en");
     </Sidebar>
     <UApp>
         <NuxtLayout class="layouts">
-            <NuxtPage />
+            <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
+                <NuxtPage />
+            </div>
         </NuxtLayout>
     </UApp>
 </template>

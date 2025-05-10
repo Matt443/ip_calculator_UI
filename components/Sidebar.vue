@@ -18,9 +18,9 @@ function openSidebar() {
             @click="openSidebar"
             class="open-button-container translate-x-[100%] duration-500 delay-500 self-end"
         >
-            <Button class="bg-green-400">
+            <UButton class="bg-green-400">
                 <UIcon name="i-lucide-lightbulb" class="size-5 m-2" />
-            </Button>
+            </UButton>
         </div>
         <div
             class="sidebar-content-container p-4 flex flex-col h-[100%] relative bottom-[0]"

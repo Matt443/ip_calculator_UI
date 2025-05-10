@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inputClasses } from "~/consts/tailwind";
+import { inputClasses } from "~/consts/tailwind.const";
 
 const numberClasses = "w-[100%]";
 const ip: Ref<number> = ref(0);

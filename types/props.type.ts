@@ -1,3 +1,5 @@
+import type { IpAllFormatsType } from "~/types/ip.type";
+
 export type IpTypeSettingType = {
     clickCallback: Function;
     classCallback: Function;
@@ -15,3 +17,7 @@ export type IpSettingType = {
     type: IpTypeSettingType;
     address: IpValueSettingType;
 };
+
+export interface IpPresentationType extends IpAllFormatsType {
+    nameId: string;
+}

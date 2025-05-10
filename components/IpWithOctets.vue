@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { hostsPartClasses, networkPartClasses } from "~/consts/tailwind";
+import { hostsPartClasses, networkPartClasses } from "~/consts/tailwind.const";
 
 const props = defineProps({
     address: {

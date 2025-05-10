@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inputClasses } from "~/consts/tailwind";
+import { inputClasses } from "~/consts/tailwind.const";
 
 const state = useStateStore();
 const binaryClasses: string = "lg:w-[100%] w-[95%] octet-input";
