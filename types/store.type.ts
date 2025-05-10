@@ -20,3 +20,10 @@ export type IpBinaryType = [string, string, string, string];
 export type IpDecimalType = number;
 
 export type IpShorthandType = number;
+
+export type SubnetsCalculatingType = "host" | "subnets";
+export type SubnetsSettingStateType = {
+    method: SubnetsCalculatingType;
+    hostQuantity: number;
+    subnetsQuantity: number;
+};

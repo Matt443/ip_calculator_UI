@@ -16,14 +16,16 @@ const props = defineProps({
 </script>
 
 <template>
-    <IpTypeSwitcher
+    <TypeSwitcher
         :click-callback="type.clickCallback"
         :class-callback="type.classCallback"
+        :types="['default', 'binary', 'decimal', 'shorthand']"
+        :label-parent="'ipTypes'"
     >
         <template #label>
             <span>{{ $t(type.label) }}:</span>
         </template>
-    </IpTypeSwitcher>
+    </TypeSwitcher>
     <Ipv4Input
         v-if="type.getter() === 'default'"
         :change-callback="address.changeCallback"

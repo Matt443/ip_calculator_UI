@@ -42,7 +42,7 @@ const maskInputConfig: IpSettingType = {
             :type="maskInputConfig.type"
             :address="maskInputConfig.address"
         ></IpInput>
-
+        <slot name="before-input"></slot>
         <UButton
             trailing-icon="i-lucide-arrow-right"
             :class="buttonClasses"

@@ -22,6 +22,15 @@
     "broadcastAddress": "Broadcast address",
     "ipMask": "Mask",
     "hostFirst": "First host",
-    "hostLast": "Last host"
+    "hostLast": "Last host",
+    "hostQuantity": "Host quantity"
+  },
+  "subnets": {
+    "quantity": "Subnets quantity",
+    "calculating": {
+      "method": "Subnets calculating method",
+      "host": "Host quantity",
+      "subnets": "Subnets quantity"
+    }
   }
 }

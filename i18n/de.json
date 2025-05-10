@@ -23,5 +23,8 @@
     "ipMask": "Maske",
     "hostFirst": "Erster Host",
     "hostLast": "Erster Host"
+  },
+  "subnets": {
+    "quantity": "Anzahl der Subnetze"
   }
 }

@@ -1,10 +1,21 @@
-import type { IpStateType, IpType, LanguageType } from "~/types/store.type";
+import type {
+    IpStateType,
+    IpType,
+    LanguageType,
+    SubnetsCalculatingType,
+    SubnetsSettingStateType,
+} from "~/types/store.type";
 
 export const useStateStore = defineStore("state", {
     state: () => ({
         ip: { type: "default", address: [0, 0, 0, 0] } as IpStateType,
         mask: { type: "default", address: [255, 255, 255, 0] } as IpStateType,
         language: "en" as LanguageType,
+        subnets: {
+            method: "host",
+            hostQuantity: 0,
+            subnetsQuantity: 0,
+        } as SubnetsSettingStateType,
     }),
     getters: {
         getCurrentLanguage(): LanguageType {
@@ -15,6 +26,9 @@ export const useStateStore = defineStore("state", {
         },
         getMask(): IpStateType {
             return this.mask;
+        },
+        getSubnets(): SubnetsSettingStateType {
+            return this.subnets;
         },
     },
     actions: {
@@ -42,6 +56,16 @@ export const useStateStore = defineStore("state", {
                 value,
                 index,
             );
+        },
+        changeSubnetsType(method: SubnetsCalculatingType) {
+            this.subnets.method = method;
+        },
+        changeSubnetsSetting(value: number) {
+            if (this.subnets.method === "host") {
+                this.subnets.hostQuantity = value;
+                return true;
+            }
+            this.subnets.subnetsQuantity = value;
         },
     },
 });

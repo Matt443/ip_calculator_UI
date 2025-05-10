@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { IpType } from "~/types/store.type";
-
 const props = defineProps({
     clickCallback: {
         type: Function,
@@ -10,9 +8,15 @@ const props = defineProps({
         type: Function,
         required: true,
     },
+    types: {
+        type: Array<string>,
+        required: true,
+    },
+    labelParent: {
+        type: String,
+        required: true,
+    },
 });
-
-const ipTypes: IpType[] = ["default", "binary", "decimal", "shorthand"];
 </script>
 
 <template>
@@ -21,13 +25,13 @@ const ipTypes: IpType[] = ["default", "binary", "decimal", "shorthand"];
             <slot name="label">Ip Type:</slot>
         </div>
         <div
-            v-for="type in ipTypes"
+            v-for="type in types"
             :key="type"
             class="type-container p-1 w-[100%] text-center hover:bg-stone-700 hover:text-stone-200"
             :class="{ active: classCallback() === type }"
             @click="props.clickCallback(type)"
         >
-            {{ $t(`ipTypes.${type}`) }}
+            {{ $t(`${labelParent}.${type}`) }}
         </div>
     </div>
 </template>
