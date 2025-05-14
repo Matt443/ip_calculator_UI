@@ -33,5 +33,11 @@
       "host": "Host quantity",
       "subnets": "Subnets quantity"
     }
+  },
+  "subnetsVLSM": {
+    "button": {
+      "add": "Add",
+      "delete": "Delete all"
+    }
   }
 }

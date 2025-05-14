@@ -14,11 +14,13 @@ const ips = [
 
 <template>
     <div class="w-[100%] min-h-[100%] text-stone-100 pt-[50px]">
-        <NetworkMaskInput></NetworkMaskInput>
-        <IpsPresentation
-            :ips
-            :host-quantity="result.hosts.quantity"
-            :mask-shorthand="result.ipMask.shorthand"
-        ></IpsPresentation>
+        <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
+            <NetworkMaskInput></NetworkMaskInput>
+            <IpsPresentation
+                :ips
+                :host-quantity="result.hosts.quantity"
+                :mask-shorthand="result.ipMask.shorthand"
+            ></IpsPresentation>
+        </div>
     </div>
 </template>

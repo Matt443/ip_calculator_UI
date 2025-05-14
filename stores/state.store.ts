@@ -16,6 +16,7 @@ export const useStateStore = defineStore("state", {
             hostQuantity: 0,
             subnetsQuantity: 0,
         } as SubnetsSettingStateType,
+        filters: [] as number[],
     }),
     getters: {
         getCurrentLanguage(): LanguageType {
@@ -29,6 +30,9 @@ export const useStateStore = defineStore("state", {
         },
         getSubnets(): SubnetsSettingStateType {
             return this.subnets;
+        },
+        getFilters(): number[] {
+            return this.filters;
         },
     },
     actions: {
@@ -66,6 +70,16 @@ export const useStateStore = defineStore("state", {
                 return true;
             }
             this.subnets.subnetsQuantity = value;
+        },
+        addFilter(value: number) {
+            this.filters.push(value);
+        },
+        removeFilter(value: number) {
+            const index = this.filters.indexOf(value);
+            this.filters.splice(index, 1);
+        },
+        removeAllFilters() {
+            this.filters = [];
         },
     },
 });

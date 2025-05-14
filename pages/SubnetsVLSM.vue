@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import IpsCollapsible from "~/components/IpsCollapsible.vue";
-import networkInfo from "~/sample/subnets.json";
+import networkInfo from "~/sample/subnetsVLSM.json";
+const state = useStateStore();
 
 const { result } = networkInfo;
 
@@ -22,10 +22,12 @@ const subnets = result.map((ipAddress) => {
         <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
             <NetworkMaskInput>
                 <template #after-input>
-                    <SubnetsSetting></SubnetsSetting>
+                    <SubnetsVlsmSetting></SubnetsVlsmSetting>
+                    <FiltersPresentation
+                        :active-filters="state.getFilters"
+                    ></FiltersPresentation>
                 </template>
             </NetworkMaskInput>
-
             <IpsCollapsible :ips="subnets"></IpsCollapsible>
         </div>
     </div>

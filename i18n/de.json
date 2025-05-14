@@ -33,5 +33,11 @@
       "host": "Anzahl der Hosts",
       "subnets": "Anzahl der Subnetze"
     }
+  },
+  "subnetsVLSM": {
+    "button": {
+      "add": "Hinzüfugen",
+      "delete": "Alle löschen"
+    }
   }
 }

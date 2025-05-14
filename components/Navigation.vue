@@ -19,9 +19,10 @@ const items = [
                     <NuxtLink to="/">Network info</NuxtLink>
                 </li>
                 <li class="whitespace-nowrap text-sm my-2">
-                    <NuxtLink @click="console.log('true')" to="/subnets"
-                        >Network address</NuxtLink
-                    >
+                    <NuxtLink to="/subnets">Subnets</NuxtLink>
+                </li>
+                <li class="whitespace-nowrap text-sm my-2">
+                    <NuxtLink to="/subnetsVLSM">Subnets VLSM</NuxtLink>
                 </li>
             </ul>
         </template>
