@@ -2,10 +2,17 @@
 export default defineNuxtConfig({
     compatibilityDate: "2024-11-01",
     devtools: { enabled: true },
+    ssr: true,
     css: ["@/assets/css/main.css"],
     alias: {
         "@config": "./config",
         "@assets": "./assets",
+    },
+    nitro: {
+        preset: "static",
+        externals: {
+            inline: ["nuxt/dist/core/runtime/nitro/utils/cache-driver.js"],
+        },
     },
 
     modules: [

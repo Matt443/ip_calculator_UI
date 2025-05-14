@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { buttonClasses } from "~/consts/tailwind.const";
-import useClipboard from "vue-clipboard3";
 
 const props = defineProps({
     toCopy: {
@@ -10,8 +9,7 @@ const props = defineProps({
 });
 
 async function clickAction(): Promise<void> {
-    const { toClipboard } = useClipboard();
-    await toClipboard(props.toCopy);
+    navigator.clipboard.writeText(props.toCopy);
 }
 </script>
 

@@ -6,7 +6,6 @@ import type { IpAllFormatsType } from "~/types/ip.type";
 const props = defineProps<{
     ips: IpAllFormatsType[];
 }>();
-console.log(props.ips);
 </script>
 
 <template>
