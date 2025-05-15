@@ -21,8 +21,7 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
             newVal: number,
             index: number,
         ): IpAddressType {
-            //@ts-ignore
-            previousAddress[index] = newVal;
+            (previousAddress as any)[index] = newVal;
             return previousAddress;
         },
         /**
@@ -31,6 +30,10 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
          */
         resetAddress(): IpV4Type {
             return [0, 0, 0, 0];
+        },
+        prepareToSend(address: IpAddressType): string {
+            if (typeof address !== "number") return address.join(".");
+            return String(address);
         },
     },
     binary: {
@@ -46,8 +49,7 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
             newVal: string,
             index: number,
         ): IpAddressType {
-            //@ts-ignore
-            previousAddress[index] = newVal;
+            (previousAddress as any)[index] = newVal;
             return previousAddress;
         },
         /**
@@ -57,21 +59,57 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
         resetAddress(): IpBinaryType {
             return ["", "", "", ""];
         },
+        prepareToSend(address: IpAddressType): string {
+            if (typeof address !== "number") return address.join(".");
+            return String(address);
+        },
     },
     decimal: {
-        changeAddress(newVal): IpAddressType {
+        /**
+         *
+         * @param {IpAddressType} newVal
+         * @returns {IpAddressType}
+         */
+        changeAddress(
+            previousAddress: IpAddressType,
+            newVal: number,
+            index: number,
+        ): IpAddressType {
             return newVal;
         },
+        /**
+         *
+         * @returns {IpDecimalType}
+         */
         resetAddress(): IpDecimalType {
             return 0;
+        },
+        prepareToSend(address: IpAddressType): string {
+            return String(address);
         },
     },
     shorthand: {
-        changeAddress(newVal): IpAddressType {
+        /**
+         *
+         * @param newVal
+         * @returns {newVal}
+         */
+        changeAddress(
+            previousAddress: IpAddressType,
+            newVal: number,
+            index: number,
+        ): IpAddressType {
             return newVal;
         },
+        /**
+         *
+         * @returns {IpDecimalType}
+         */
         resetAddress(): IpDecimalType {
             return 0;
+        },
+        prepareToSend(address: IpAddressType): string {
+            return String(address);
         },
     },
 };

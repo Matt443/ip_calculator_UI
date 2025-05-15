@@ -7,4 +7,5 @@ export type AnyIpAddressStrategy = {
         index: number,
     ): IpAddressType;
     resetAddress(): IpAddressType;
+    prepareToSend(address: IpAddressType): string;
 };

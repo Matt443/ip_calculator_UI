@@ -46,6 +46,7 @@ const maskInputConfig: IpSettingType = {
         <UButton
             trailing-icon="i-lucide-arrow-right"
             :class="buttonClasses"
+            @click="state.networkInfoApiCall"
             :ui="{
                 trailingIcon: 'ml-1 group-hover:translate-x-[5px] duration-500',
             }"

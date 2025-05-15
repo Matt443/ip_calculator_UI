@@ -2,13 +2,15 @@ import type {
     IpStateType,
     IpType,
     LanguageType,
+    NetworkInfoType,
     SubnetsCalculatingType,
     SubnetsSettingStateType,
 } from "~/types/store.type";
+// import 'dotenv/config'
 
 export const useStateStore = defineStore("state", {
     state: () => ({
-        ip: { type: "default", address: [0, 0, 0, 0] } as IpStateType,
+        ip: { type: "default", address: [192, 168, 0, 1] } as IpStateType,
         mask: { type: "default", address: [255, 255, 255, 0] } as IpStateType,
         language: "en" as LanguageType,
         subnets: {
@@ -17,6 +19,7 @@ export const useStateStore = defineStore("state", {
             subnetsQuantity: 0,
         } as SubnetsSettingStateType,
         filters: [] as number[],
+        networkInfo: { status: 0 } as NetworkInfoType,
     }),
     getters: {
         getCurrentLanguage(): LanguageType {
@@ -33,6 +36,9 @@ export const useStateStore = defineStore("state", {
         },
         getFilters(): number[] {
             return this.filters;
+        },
+        getNetworkInfo(): NetworkInfoType {
+            return this.networkInfo;
         },
     },
     actions: {
@@ -80,6 +86,17 @@ export const useStateStore = defineStore("state", {
         },
         removeAllFilters() {
             this.filters = [];
+        },
+        async networkInfoApiCall() {
+            const response = await apiGet(useRuntimeConfig().public.apiBase, {
+                ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                type: this.ip.type,
+                mask: anyIp[this.mask.type].prepareToSend(this.mask.address),
+                maskType: this.mask.type,
+            });
+            this.networkInfo.status = response.code;
+            if (response.data)
+                this.networkInfo = { ...this.networkInfo, ...response.data };
         },
     },
 });

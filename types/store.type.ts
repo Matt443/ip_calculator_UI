@@ -1,3 +1,5 @@
+import type { IpAllFormatsType } from "./ip.type";
+
 export type LanguageType = "de" | "en";
 
 export type IpType = "default" | "decimal" | "binary" | "shorthand";
@@ -13,9 +15,9 @@ export type IpStateType = {
     address: IpAddressType;
 };
 
-export type IpV4Type = [number, number, number, number];
+export type IpV4Type = Number[];
 
-export type IpBinaryType = [string, string, string, string];
+export type IpBinaryType = String[];
 
 export type IpDecimalType = number;
 
@@ -26,4 +28,16 @@ export type SubnetsSettingStateType = {
     method: SubnetsCalculatingType;
     hostQuantity: number;
     subnetsQuantity: number;
+};
+
+export type NetworkInfoType = {
+    networkAddress: IpAllFormatsType;
+    broadcastAddress: IpAllFormatsType;
+    ipMask: IpAllFormatsType;
+    hosts: {
+        quantity: number;
+        first: IpAllFormatsType;
+        last: IpAllFormatsType;
+    };
+    status: number;
 };

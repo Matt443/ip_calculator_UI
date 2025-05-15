@@ -26,7 +26,7 @@ const props = defineProps({
 function changeEvent(ipNumber: number) {
     if (ipNumber < props.min) ip.value = props.min;
     else if (ipNumber > props.max) ip.value = props.max;
-    props.changeCallback(ip);
+    props.changeCallback(ip.value);
 }
 </script>
 
