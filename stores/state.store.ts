@@ -24,9 +24,7 @@ export const useStateStore = defineStore("state", {
         responses: {
             networkInfo: { status: 0 } as NetworkInfoResponseType,
             subnets: { status: 0 } as SubnetsResponseType,
-        },
-        dataToShow: {
-            subnets: {},
+            subnetsVLSM: { status: 0 } as SubnetsResponseType,
         },
     }),
     getters: {
@@ -123,7 +121,10 @@ export const useStateStore = defineStore("state", {
 
             const key = Object.keys(toSend)[0] as keyof typeof toSend;
 
-            if (toSend[key] === 0) return (this.responses.subnets.status = 400);
+            if (toSend[key] === 0) {
+                this.responses.subnets.data = [];
+                return (this.responses.subnets.status = 422);
+            }
 
             const url: string = `${useRuntimeConfig().public.apiBase}/ip/subnets`;
 
@@ -140,36 +141,29 @@ export const useStateStore = defineStore("state", {
                     ...this.responses.subnets,
                     data: [...response.data],
                 };
-            this.prepareSubnets();
         },
-        prepareSubnets() {
-            this.dataToShow.subnets = this.responses.subnets.data.map(
-                (ipAddress: NetworkInfoType) => {
-                    return {
-                        addresses: [
-                            {
-                                nameId: "info.networkAddress",
-                                ...ipAddress.networkAddress,
-                            },
-                            {
-                                nameId: "info.broadcastAddress",
-                                ...ipAddress.broadcastAddress,
-                            },
-                            { nameId: "info.ipMask", ...ipAddress.ipMask },
-                            {
-                                nameId: "info.hostFirst",
-                                ...ipAddress.hosts.first,
-                            },
-                            {
-                                nameId: "info.hostLast",
-                                ...ipAddress.hosts.last,
-                            },
-                        ],
-                        hostQuantity: ipAddress.hosts.quantity,
-                        maskShorthand: ipAddress.ipMask.shorthand || -1,
-                    };
-                },
-            );
+        async subnetsVLSMApiCall() {
+            const url: string = `${useRuntimeConfig().public.apiBase}/ip/subnetsVLSM`;
+
+            if (this.filters.length < 2) {
+                this.responses.subnetsVLSM.data = [];
+                return (this.responses.subnetsVLSM.status = 422);
+            }
+
+            const response = await apiPost(url, {
+                ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                type: this.ip.type,
+                mask: anyIp[this.mask.type].prepareToSend(this.mask.address),
+                maskType: this.mask.type,
+                hostQuantities: this.filters,
+            });
+
+            this.responses.subnetsVLSM.status = response.code;
+            if (response.data && Array.isArray(response.data))
+                this.responses.subnetsVLSM = {
+                    ...this.responses.subnetsVLSM,
+                    data: [...response.data],
+                };
         },
     },
 });

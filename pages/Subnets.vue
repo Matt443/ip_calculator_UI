@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import type { Reactive } from "vue";
-import networkInfo from "~/sample/subnets.json";
 import type { NetworkInfoPresentationType } from "~/types/props.type";
 import type { NetworkInfoType } from "~/types/store.type";
 
-const { result } = networkInfo;
 const state = useStateStore();
 
 const ips: Ref<NetworkInfoPresentationType[]> = ref([]);
@@ -13,26 +10,7 @@ watch(
     () => state.responses.subnets,
     () => {
         const response: NetworkInfoType[] = state.responses.subnets.data;
-        ips.value = ips.value.slice(0);
-        ips.value = response.map((ipAddress: NetworkInfoType) => {
-            return {
-                addresses: [
-                    {
-                        nameId: "info.networkAddress",
-                        ...ipAddress.networkAddress,
-                    },
-                    {
-                        nameId: "info.broadcastAddress",
-                        ...ipAddress.broadcastAddress,
-                    },
-                    { nameId: "info.ipMask", ...ipAddress.ipMask },
-                    { nameId: "info.hostFirst", ...ipAddress.hosts.first },
-                    { nameId: "info.hostLast", ...ipAddress.hosts.last },
-                ],
-                hostQuantity: ipAddress.hosts.quantity,
-                maskShorthand: ipAddress.ipMask.shorthand || -1,
-            };
-        });
+        ips.value = prepareSubnets(response);
     },
 );
 </script>

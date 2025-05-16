@@ -38,6 +38,13 @@
     "button": {
       "add": "Add",
       "delete": "Delete all"
-    }
+    },
+    "dataInvalid": "Your data seems to be incorrect. The request cannot be processed. At least 2 host quantities are required, and each host quantity must be greater than 0."
+  },
+  "error": {
+    "unknown": "Something went wrong. Please try again later.",
+    "0": "Your results will appear here.",
+    "422": "Your data seems to be incorrect. The request cannot be processed.",
+    "400": "Your data seems to be incorrect."
   }
 }

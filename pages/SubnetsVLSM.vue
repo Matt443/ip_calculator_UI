@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import networkInfo from "~/sample/subnetsVLSM.json";
+import type { NetworkInfoPresentationType } from "~/types/props.type";
+import type { NetworkInfoType } from "~/types/store.type";
 const state = useStateStore();
 
-const { result } = networkInfo;
+const ips: Ref<NetworkInfoPresentationType[]> = ref([]);
+const status: Ref<number> = ref(0);
 
-const subnets = result.map((ipAddress) => {
-    return [
-        { nameId: "info.networkAddress", ...ipAddress.networkAddress },
-        { nameId: "info.broadcastAddress", ...ipAddress.broadcastAddress },
-        { nameId: "info.ipMask", ...ipAddress.ipMask },
-        { nameId: "info.hostFirst", ...ipAddress.hosts.first },
-        { nameId: "info.hostLast", ...ipAddress.hosts.last },
-    ];
-});
+watch(
+    () => state.responses.subnetsVLSM.status,
+    () => {
+        const response: NetworkInfoType[] = state.responses.subnetsVLSM.data;
+        ips.value = prepareSubnets(response);
+        status.value = state.responses.subnetsVLSM.status;
+    },
+);
 </script>
 
 <template>
@@ -20,7 +21,7 @@ const subnets = result.map((ipAddress) => {
         class="page-container bg-stone-950 w-[100%] min-h-[100%] text-stone-100 pt-[50px]"
     >
         <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
-            <NetworkMaskInput>
+            <NetworkMaskInput :button-click-callback="state.subnetsVLSMApiCall">
                 <template #after-input>
                     <SubnetsVlsmSetting></SubnetsVlsmSetting>
                     <FiltersPresentation
@@ -28,7 +29,12 @@ const subnets = result.map((ipAddress) => {
                     ></FiltersPresentation>
                 </template>
             </NetworkMaskInput>
-            <IpsCollapsible :ips="subnets"></IpsCollapsible>
+            <IpsCollapsible :ips></IpsCollapsible>
+            <Error :code="status">
+                <template #error-422>
+                    <span>{{ $t("subnetsVLSM.dataInvalid") }}</span>
+                </template>
+            </Error>
         </div>
     </div>
 </template>

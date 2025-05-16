@@ -38,6 +38,13 @@
     "button": {
       "add": "Hinzüfugen",
       "delete": "Alle löschen"
-    }
+    },
+    "dataInvalid": "Ihre Daten scheinen falsch zu sein. Die Anfrage kann nicht verarbeitet werden. Es sind mindestens 2 Host-Mengen erforderlich, und jede Host-Menge muss größer als 0 sein."
+  },
+  "error": {
+    "unknown": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
+    "0": "Ihre Ergebnisse werden hier angezeigt.",
+    "422": "Ihre Daten scheinen falsch zu sein. Die Anfrage kann nicht verarbeitet werden.",
+    "400": "Ihre Daten scheinen falsch zu sein."
   }
 }
