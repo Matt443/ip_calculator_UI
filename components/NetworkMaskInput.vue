@@ -3,6 +3,13 @@ import type { IpSettingType } from "~/types/props.type";
 import { buttonClasses } from "~/consts/tailwind.const";
 const state = useStateStore();
 
+const props = defineProps({
+    buttonClickCallback: {
+        type: Function,
+        default: () => {},
+    },
+});
+
 const ipInputConfig: IpSettingType = {
     type: {
         clickCallback: state.changeIpType,
@@ -46,7 +53,11 @@ const maskInputConfig: IpSettingType = {
         <UButton
             trailing-icon="i-lucide-arrow-right"
             :class="buttonClasses"
-            @click="state.networkInfoApiCall"
+            @click="
+                () => {
+                    buttonClickCallback();
+                }
+            "
             :ui="{
                 trailingIcon: 'ml-1 group-hover:translate-x-[5px] duration-500',
             }"

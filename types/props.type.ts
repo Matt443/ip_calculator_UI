@@ -21,3 +21,9 @@ export type IpSettingType = {
 export interface IpPresentationType extends IpAllFormatsType {
     nameId: string;
 }
+
+export interface NetworkInfoPresentationType {
+    addresses: IpPresentationType[];
+    hostQuantity: number;
+    maskShorthand: number;
+}

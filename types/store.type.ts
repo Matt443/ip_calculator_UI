@@ -39,5 +39,9 @@ export type NetworkInfoType = {
         first: IpAllFormatsType;
         last: IpAllFormatsType;
     };
+};
+
+export type NetworkInfoResponseType = NetworkInfoType & { status: number };
+export type SubnetsResponseType = { data: NetworkInfoType[] } & {
     status: number;
 };

@@ -2,8 +2,10 @@ import type {
     IpStateType,
     IpType,
     LanguageType,
+    NetworkInfoResponseType,
     NetworkInfoType,
     SubnetsCalculatingType,
+    SubnetsResponseType,
     SubnetsSettingStateType,
 } from "~/types/store.type";
 // import 'dotenv/config'
@@ -19,7 +21,13 @@ export const useStateStore = defineStore("state", {
             subnetsQuantity: 0,
         } as SubnetsSettingStateType,
         filters: [] as number[],
-        networkInfo: { status: 0 } as NetworkInfoType,
+        responses: {
+            networkInfo: { status: 0 } as NetworkInfoResponseType,
+            subnets: { status: 0 } as SubnetsResponseType,
+        },
+        dataToShow: {
+            subnets: {},
+        },
     }),
     getters: {
         getCurrentLanguage(): LanguageType {
@@ -38,7 +46,7 @@ export const useStateStore = defineStore("state", {
             return this.filters;
         },
         getNetworkInfo(): NetworkInfoType {
-            return this.networkInfo;
+            return this.responses.networkInfo;
         },
     },
     actions: {
@@ -88,15 +96,80 @@ export const useStateStore = defineStore("state", {
             this.filters = [];
         },
         async networkInfoApiCall() {
-            const response = await apiGet(useRuntimeConfig().public.apiBase, {
+            const url: string = `${useRuntimeConfig().public.apiBase}/ip/networkInfo`;
+
+            const response = await apiGet(url, {
                 ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
                 type: this.ip.type,
                 mask: anyIp[this.mask.type].prepareToSend(this.mask.address),
                 maskType: this.mask.type,
             });
-            this.networkInfo.status = response.code;
+            this.responses.networkInfo.status = response.code;
             if (response.data)
-                this.networkInfo = { ...this.networkInfo, ...response.data };
+                this.responses.networkInfo = {
+                    ...this.responses.networkInfo,
+                    ...response.data,
+                };
+        },
+        async subnetsApiCall() {
+            const toSend: {
+                subnetsHostQuantity?: number;
+                subnetsQuantity?: number;
+            } = {};
+            //Checking what is to send
+            if (this.subnets.method === "host")
+                toSend.subnetsHostQuantity = this.subnets.hostQuantity;
+            else toSend.subnetsQuantity = this.subnets.subnetsQuantity;
+
+            const key = Object.keys(toSend)[0] as keyof typeof toSend;
+
+            if (toSend[key] === 0) return (this.responses.subnets.status = 400);
+
+            const url: string = `${useRuntimeConfig().public.apiBase}/ip/subnets`;
+
+            const response = await apiGet(url, {
+                ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                type: this.ip.type,
+                mask: anyIp[this.mask.type].prepareToSend(this.mask.address),
+                maskType: this.mask.type,
+                ...toSend,
+            });
+            this.responses.subnets.status = response.code;
+            if (response.data && Array.isArray(response.data))
+                this.responses.subnets = {
+                    ...this.responses.subnets,
+                    data: [...response.data],
+                };
+            this.prepareSubnets();
+        },
+        prepareSubnets() {
+            this.dataToShow.subnets = this.responses.subnets.data.map(
+                (ipAddress: NetworkInfoType) => {
+                    return {
+                        addresses: [
+                            {
+                                nameId: "info.networkAddress",
+                                ...ipAddress.networkAddress,
+                            },
+                            {
+                                nameId: "info.broadcastAddress",
+                                ...ipAddress.broadcastAddress,
+                            },
+                            { nameId: "info.ipMask", ...ipAddress.ipMask },
+                            {
+                                nameId: "info.hostFirst",
+                                ...ipAddress.hosts.first,
+                            },
+                            {
+                                nameId: "info.hostLast",
+                                ...ipAddress.hosts.last,
+                            },
+                        ],
+                        hostQuantity: ipAddress.hosts.quantity,
+                        maskShorthand: ipAddress.ipMask.shorthand || -1,
+                    };
+                },
+            );
         },
     },
 });

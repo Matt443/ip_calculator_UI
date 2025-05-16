@@ -7,6 +7,15 @@ const props = defineProps<{
     hostQuantity: number;
     maskShorthand: number;
 }>();
+
+const mask = ref(props.maskShorthand);
+
+watch(
+    () => props.maskShorthand,
+    () => {
+        mask.value = props.maskShorthand;
+    },
+);
 </script>
 
 <template>
@@ -31,7 +40,7 @@ const props = defineProps<{
         <IpAllFormats
             v-for="singleIp in ips"
             :default="singleIp.ip"
-            :mask-shorthand="maskShorthand"
+            :mask-shorthand="mask"
             :binary="singleIp.binary"
             :decimal="singleIp.decimal"
             :shorthand="singleIp.shorthand"

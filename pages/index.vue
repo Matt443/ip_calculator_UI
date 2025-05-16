@@ -1,39 +1,39 @@
 <script setup lang="ts">
-import networkInfo from "~/sample/networkInfo.json";
 import type { IpPresentationType } from "~/types/props.type";
-
-const { result } = networkInfo;
 
 const state = useStateStore();
 const ips: Ref<IpPresentationType[]> = ref([]);
 const hostQuantity = ref(0);
+const maskShorthand = ref(0);
 
 watch(
-    () => state.networkInfo,
+    () => state.responses.networkInfo,
     () => {
-        // if (state.networkInfo !==)
+        const response = state.responses.networkInfo;
         ips.value = [
             {
                 nameId: "info.networkAddress",
-                ...state.networkInfo.networkAddress,
+                ...response.networkAddress,
             },
             {
                 nameId: "info.broadcastAddress",
-                ...state.networkInfo.broadcastAddress,
+                ...response.broadcastAddress,
             },
-            { nameId: "info.ipMask", ...state.networkInfo.ipMask },
+            { nameId: "info.ipMask", ...response.ipMask },
         ];
-        if (state.networkInfo.hosts.quantity > 0) {
+        if (response.hosts.quantity > 0) {
             ips.value.push({
                 nameId: "info.hostFirst",
-                ...state.networkInfo.hosts.first,
+                ...response.hosts.first,
             });
             ips.value.push({
                 nameId: "info.hostLast",
-                ...state.networkInfo.hosts.last,
+                ...response.hosts.last,
             });
         }
-        hostQuantity.value = state.networkInfo.hosts.quantity;
+        hostQuantity.value = response.hosts.quantity;
+        if (response.ipMask.shorthand)
+            maskShorthand.value = response.ipMask.shorthand;
     },
 );
 </script>
@@ -41,17 +41,19 @@ watch(
 <template>
     <div class="w-[100%] min-h-[100%] text-stone-100 pt-[50px]">
         <div class="content-container lg:w-[1000px] w-[100%] m-auto px-2">
-            <NetworkMaskInput></NetworkMaskInput>
+            <NetworkMaskInput
+                :button-click-callback="state.networkInfoApiCall"
+            ></NetworkMaskInput>
             <IpsPresentation
                 v-if="
                     Object.keys(state.getNetworkInfo).length > 1 &&
-                    state.networkInfo.status === 200
+                    state.responses.networkInfo.status === 200
                 "
                 :ips="ips"
                 :host-quantity="hostQuantity"
-                :mask-shorthand="result.ipMask.shorthand"
+                :mask-shorthand="maskShorthand"
             ></IpsPresentation>
-            <Error :code="state.networkInfo.status"></Error>
+            <Error :code="state.responses.networkInfo.status"></Error>
         </div>
     </div>
 </template>

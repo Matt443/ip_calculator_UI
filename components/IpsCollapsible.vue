@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { buttonClasses } from "~/consts/tailwind.const";
-
-import type { IpAllFormatsType } from "~/types/ip.type";
+import type { NetworkInfoPresentationType } from "~/types/props.type";
 
 const props = defineProps<{
-    ips: IpAllFormatsType[];
+    ips: NetworkInfoPresentationType[];
 }>();
 </script>
 
@@ -25,9 +24,9 @@ const props = defineProps<{
 
         <template #content>
             <IpsPresentation
-                :ips="ip"
-                :host-quantity="1"
-                :mask-shorthand="24"
+                :ips="ip.addresses"
+                :host-quantity="ip.hostQuantity"
+                :mask-shorthand="ips[index].maskShorthand"
             ></IpsPresentation>
         </template>
     </UCollapsible>

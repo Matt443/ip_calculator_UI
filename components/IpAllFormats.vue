@@ -26,6 +26,8 @@ function calculateBreak(maskShorthand: number) {
             4 - networkOctets,
         );
         octetsClassesBinary.value = [...octetsClasses.value];
+        octetToBreak.value = -1;
+        breakIndex.value = -1;
     } else {
         const networkPart = Math.floor(maskShorthand / 8);
         octetsClassesBinary.value = createOctetClass(
@@ -48,6 +50,12 @@ function createOctetClass(network: number, hosts: number): Array<string> {
     return classes;
 }
 calculateBreak(props.maskShorthand);
+watch(
+    () => props.maskShorthand,
+    () => {
+        calculateBreak(props.maskShorthand);
+    },
+);
 </script>
 
 <template>

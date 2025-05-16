@@ -3,7 +3,7 @@ import type { NetworkInfoType } from "~/types/store.type";
 export async function apiGet(
     url: string,
     paramsObject: object,
-): Promise<{ data?: NetworkInfoType; code: number }> {
+): Promise<{ data?: NetworkInfoType | NetworkInfoType[]; code: number }> {
     try {
         const response = await axios.get(url + createParams(paramsObject));
 
