@@ -18,7 +18,7 @@ async function clickAction(): Promise<void> {
         <UButton
             @click="clickAction"
             :class="`${buttonClasses} ml-2`"
-            icon="i-lucide-copy"
+            icon="i-heroicons-clipboard"
             :ui="{
                 leadingIcon: 'group-hover:translate-y-[-3px] duration-500',
             }"

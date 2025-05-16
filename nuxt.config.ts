@@ -5,20 +5,24 @@ export default defineNuxtConfig({
     compatibilityDate: "2024-11-01",
     devtools: { enabled: true },
     ssr: true,
-    css: ["@/assets/css/main.css"],
+    css: ["@/assets/css/main.css", "@mdi/font/css/materialdesignicons.css"],
     alias: {
         "@config": "./config",
         "@assets": "./assets",
     },
     nitro: {
         preset: "static",
-        externals: {
-            inline: ["nuxt/dist/core/runtime/nitro/utils/cache-driver.js"],
-        },
     },
     runtimeConfig: {
         public: {
             apiBase: process.env.API_URL,
+        },
+    },
+    router: {
+        //@ts-ignore
+        mode: "history",
+        generate: {
+            fallback: "404.html", // Ensures unknown routes don't break
         },
     },
 
@@ -33,12 +37,26 @@ export default defineNuxtConfig({
         "@nuxtjs/i18n",
     ],
     i18n: {
-        defaultLocale: "en",
+        defaultLocale: "de",
         strategy: "no_prefix",
         locales: [
-            { code: "de", name: "German", file: "de.json" },
             { code: "en", name: "English", file: "en.json" },
+            { code: "de", name: "German", file: "de.json" },
         ],
         langDir: "./",
+        lazy: true,
+        detectBrowserLanguage: {
+            useCookie: true,
+            cookieKey: "i18n_redirected",
+            redirectOn: "root",
+            alwaysRedirect: true,
+        },
+    },
+    icon: {
+        clientBundle: {
+            scan: true,
+
+            sizeLimitKb: 256,
+        },
     },
 });
