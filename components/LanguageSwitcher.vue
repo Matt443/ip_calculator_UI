@@ -2,7 +2,7 @@
 import { availableLanguages } from "@/config/config";
 import type { LanguageType } from "~/types/store.type";
 
-const { setLocale } = useI18n();
+const { setLocale, locale } = useI18n();
 const state = useStateStore();
 
 function imgUrl(name: string) {
@@ -13,6 +13,8 @@ function changeLanguage(name: LanguageType) {
     state.changeLanguage(name);
     setLocale(name);
 }
+
+state.changeLanguage(locale.value);
 </script>
 
 <template>
