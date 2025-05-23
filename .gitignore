@@ -28,4 +28,4 @@ sample
 
 test-results
 
-playwright-report
+playwright-report/*

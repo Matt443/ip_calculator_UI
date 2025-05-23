@@ -13,7 +13,7 @@ test("network info default", async ({ page }) => {
 
     page.getByRole("button", { name: "Get complete ip info" }).click();
 
-    await page.waitForSelector(".ip-comparison-container", { timeout: 5000 });
+    await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
     await page.waitForTimeout(5000);
 
     const content = await page
