@@ -54,7 +54,8 @@ const maskInputConfig: IpSettingType = {
             trailing-icon="i-lucide-arrow-right"
             :class="buttonClasses"
             @click="
-                () => {
+                (e) => {
+                    e.preventDefault();
                     buttonClickCallback();
                 }
             "

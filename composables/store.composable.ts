@@ -60,7 +60,7 @@ export const anyIp: Record<IpType, AnyIpAddressStrategy> = {
             return ["", "", "", ""];
         },
         prepareToSend(address: IpAddressType): string {
-            if (typeof address !== "number") return address.join(".");
+            if (typeof address !== "number") return address.join("");
             return String(address);
         },
     },

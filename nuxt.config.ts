@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     modules: [
         "@nuxt/eslint",
         "@nuxt/ui",
+
         "@nuxt/icon",
         "@nuxt/fonts",
         "@nuxt/test-utils",
@@ -57,6 +58,18 @@ export default defineNuxtConfig({
             scan: true,
 
             sizeLimitKb: 256,
+        },
+    },
+    vite: {
+        server: {
+            watch: {
+                ignored: [
+                    "**/dist/**",
+                    "**/tests/e2e/**",
+                    "**/playwright-reports/**",
+                    "**/test-results/**",
+                ],
+            },
         },
     },
 });

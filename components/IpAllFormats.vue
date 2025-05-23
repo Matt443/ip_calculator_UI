@@ -90,6 +90,7 @@ watch(
                     {{ $t("ipTypes.binary") }}:
                 </span>
                 <IpWithOctets
+                    :container-classes="'ip-binary-container'"
                     :address="binary"
                     :octets-classes="octetsClassesBinary"
                     :octet-to-break="octetToBreak"

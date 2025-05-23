@@ -19,11 +19,16 @@ const props = defineProps({
         type: Number,
         default: -1,
     },
+    containerClasses: {
+        type: String,
+        required: false,
+        default: "ipv4-container",
+    },
 });
 </script>
 
 <template>
-    <div class="ipv4-container flex py-2 flex-row w-[100%]">
+    <div :class="`${containerClasses} flex py-2 flex-row w-[100%]`">
         <slot name="beforeAddress"></slot>
         <div
             v-for="(octet, index) in address"

@@ -44,7 +44,7 @@ function changeEvent(event: Event, index: number) {
 
 <template>
     <div
-        class="binary-input-container flex flex-col lg:flex-row relative py-3 items-center"
+        class="binary-inputs-container flex flex-col lg:flex-row relative py-3 items-center"
         ref="input"
     >
         <div class="ipv4-input-label pr-1 whitespace-nowrap">
