@@ -25,3 +25,7 @@ logs
 
 *.bat
 sample
+
+test-results
+
+playwright-report
