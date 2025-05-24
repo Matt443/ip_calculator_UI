@@ -9,6 +9,10 @@ dist
 # Node dependencies
 node_modules
 
+
+test-results
+playwright-report
+
 # Logs
 logs
 *.log
@@ -26,6 +30,3 @@ logs
 *.bat
 sample
 
-test-results
-
-playwright-report/*
