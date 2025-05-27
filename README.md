@@ -1,6 +1,6 @@
-# Nuxt App 🚀
+# Ip Calculator UI 🚀
 
-A modern Nuxt project with Tailwind CSS, Playwright testing, and various powerful libraries.
+AThe goal of this project is to showcase an example UI for https://github.com/Matt443/ip_calculator_UI
 
 ## 📦 Tech Stack
 
