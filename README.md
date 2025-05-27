@@ -1,6 +1,10 @@
 # Ip Calculator UI 🚀
 
-AThe goal of this project is to showcase an example UI for https://github.com/Matt443/ip_calculator_api
+The goal of this project is to showcase an example UI for\*\* [Ip Calculator Api](https://github.com/Matt443/ip_calculator_api)
+
+# Preview
+
+[Preview](https://ip-calculator.marcinregula.de/)
 
 ## 📦 Tech Stack
 
