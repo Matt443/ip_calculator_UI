@@ -162,11 +162,18 @@ export const sampleRequests = {
     },
 };
 
+/**
+ *
+ * @param {Page} page
+ * @param {string} inputValue
+ * @param {number} modeToBeActive
+ * @returns {Promise<void>}
+ */
 export async function setSubnets(
     page: Page,
     inputValue: string,
     modeToBeActive: number,
-) {
+): Promise<void> {
     await page
         .locator(".type-switcher-container")
         .nth(2)
@@ -174,4 +181,22 @@ export async function setSubnets(
         .nth(modeToBeActive)
         .click();
     await page.locator(".subnets-setting-container input").fill(inputValue);
+}
+
+/**
+ *
+ * @param {Page} page
+ * @param {number[]} hostQuantitities
+ * @returns {Promise<void>}
+ */
+export async function setSubnetsVLSM(
+    page: Page,
+    hostQuantitities: number[],
+): Promise<void> {
+    for (const hostQuantity of hostQuantitities) {
+        await page
+            .locator(".vlsm-setting-container input")
+            .fill(String(hostQuantity));
+        await page.locator(".vlsm-setting-container button").nth(0).click();
+    }
 }
