@@ -10,16 +10,16 @@ The goal of this project is to showcase an example UI for [Ip Calculator Api](ht
 
 ### **Frontend**
 
-- ![Nuxt](https://img.shields.io/badge/Nuxt-3.16-green?logo=nuxt.js&logoColor=white) ![First project](https://img.shields.io/badge/First_Project-🚀-blue) – Powerful Vue-based framework
+- ![Nuxt](https://img.shields.io/badge/Nuxt-3.16-green?logo=nuxt&logoColor=white) ![My first project](https://img.shields.io/badge/My_First_Project-🚀-blue) – Powerful Vue-based framework
 - ![Vue](https://img.shields.io/badge/Vue-3.5-%23308A43?logo=vue.js&logoColor=white) – Progressive UI framework
-- ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1-%2338B2AC?logo=tailwind-css&logoColor=white) ![First project](https://img.shields.io/badge/First_Project-🚀-blue)– Utility-first CSS framework
-- ![Pinia](https://img.shields.io/badge/Pinia-3.0-yellow?logo=vue.js&logoColor=white) – Vue state management alternative
+- ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1-%2338B2AC?logo=tailwind-css&logoColor=white) ![My first project](https://img.shields.io/badge/My_First_Project-🚀-blue)– Utility-first CSS framework
+- ![Pinia](https://img.shields.io/badge/Pinia-3.16-yellow?logo=vue.js&logoColor=white) – Vue state management alternative
 - ![Iconify](https://img.shields.io/badge/Iconify-Heroicons%20MDI-%23FFDD00?logo=iconify&logoColor=white) – Extensive icon library
 - ![Sass](https://img.shields.io/badge/Sass-Embedded-%23CC6699?logo=sass&logoColor=white) – CSS preprocessor for styling flexibility
 
 ### **Testing & Code Quality**
 
-- ![Playwright](https://img.shields.io/badge/Playwright-1.52-%23FF33A1?logo=microsoft&logoColor=white) ![First project](https://img.shields.io/badge/First_Project-🚀-blue)– End-to-end browser testing
+- ![Playwright](https://img.shields.io/badge/Playwright-1.52-%23FF33A1?&logoColor=white) ![My first project](https://img.shields.io/badge/My_First_Project-🚀-blue)– End-to-end browser testing
 - ![ESLint](https://img.shields.io/badge/ESLint-9.25-%23363636?logo=eslint&logoColor=white) – Code linting for consistent styling
 - ![Prettier](https://img.shields.io/badge/Prettier-3.5-%23005F9E?logo=prettier&logoColor=white) – Code formatter for clean syntax
 

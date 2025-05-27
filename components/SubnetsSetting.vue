@@ -21,7 +21,7 @@ function typeClassCallback() {
             <span>{{ $t("subnets.calculating.method") }}:</span>
         </template>
     </TypeSwitcher>
-    <div class="flex py-3">
+    <div class="flex py-3 subnets-setting-container">
         <span class="pr-1 whitespace-nowrap"
             >{{ $t(`subnets.calculating.${state.subnets.method}`) }}:</span
         >

@@ -1,10 +1,5 @@
 import { test, expect } from "@playwright/test";
-import {
-    clickType,
-    getAllInputs,
-    fillAllInputs,
-    sampleRequests,
-} from "@/composables/playwright.composable";
+import { sampleRequests } from "@/composables/playwright.composable";
 
 test.beforeAll(async ({ browser }) => {
     await browser.newPage();
@@ -42,7 +37,9 @@ test("network info decimal", async ({ page }) => {
     await page.goto("/");
 
     await sampleRequests.decimal(page);
+
     await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
+
     const content = await page
         .locator(".ip-comparison-container")
         .locator(".ip-comparison-row")
@@ -58,6 +55,7 @@ test("network info shorthand", async ({ page }) => {
     await sampleRequests.shorthand(page);
 
     await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
+
     const content = await page
         .locator(".ip-comparison-container")
         .locator(".ip-comparison-row")

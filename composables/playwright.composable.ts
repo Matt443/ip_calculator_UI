@@ -161,3 +161,17 @@ export const sampleRequests = {
             .click();
     },
 };
+
+export async function setSubnets(
+    page: Page,
+    inputValue: string,
+    modeToBeActive: number,
+) {
+    await page
+        .locator(".type-switcher-container")
+        .nth(2)
+        .locator(".type-container")
+        .nth(modeToBeActive)
+        .click();
+    await page.locator(".subnets-setting-container input").fill(inputValue);
+}
