@@ -3,6 +3,7 @@ import {
     clickType,
     getAllInputs,
     fillAllInputs,
+    sampleRequests,
 } from "@/composables/playwright.composable";
 
 test.beforeAll(async ({ browser }) => {
@@ -14,7 +15,6 @@ test("network info default", async ({ page }) => {
     page.getByRole("button", { name: "Get complete ip info" }).click();
 
     await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
-    await page.waitForTimeout(5000);
 
     const content = await page
         .locator(".ipv4-container")
@@ -26,39 +26,7 @@ test("network info default", async ({ page }) => {
 test("network info binary", async ({ page }) => {
     await page.goto("/");
 
-    await page.locator(".type-switcher-container").first().waitFor();
-
-    await clickType(page, 0, 1);
-    const ipInputsContainer = await getAllInputs(
-        page,
-        "binary-inputs-container",
-        "binary-input-container",
-        0,
-    );
-    await fillAllInputs(ipInputsContainer, [
-        "11000000",
-        "10101000",
-        "00000000",
-        "00000001",
-    ]);
-
-    await page.locator(".type-switcher-container").nth(1).waitFor();
-
-    await clickType(page, 1, 1);
-    const maskInputsContainer = await getAllInputs(
-        page,
-        "binary-inputs-container",
-        "binary-input-container",
-        1,
-    );
-    await fillAllInputs(maskInputsContainer, [
-        "11111111",
-        "11111111",
-        "11111111",
-        "00000000",
-    ]);
-
-    await page.getByRole("button", { name: "Get complete ip info" }).click();
+    await sampleRequests.binary(page);
 
     await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
     const content = await page
@@ -68,4 +36,33 @@ test("network info binary", async ({ page }) => {
         .locator(".ipv4-container")
         .allTextContents();
     expect(content[0]).toBe("192.168.0.255");
+});
+
+test("network info decimal", async ({ page }) => {
+    await page.goto("/");
+
+    await sampleRequests.decimal(page);
+    await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
+    const content = await page
+        .locator(".ip-comparison-container")
+        .locator(".ip-comparison-row")
+        .nth(1)
+        .locator(".ipv4-container")
+        .allTextContents();
+    expect(content[0]).toBe("192.168.0.255");
+});
+
+test("network info shorthand", async ({ page }) => {
+    await page.goto("/");
+
+    await sampleRequests.shorthand(page);
+
+    await page.waitForSelector(".ip-comparison-container", { timeout: 15000 });
+    const content = await page
+        .locator(".ip-comparison-container")
+        .locator(".ip-comparison-row")
+        .nth(1)
+        .locator(".ipv4-container")
+        .allTextContents();
+    expect(content[0]).toBe("255.0.0.255");
 });

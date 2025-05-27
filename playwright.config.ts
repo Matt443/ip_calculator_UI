@@ -4,9 +4,9 @@ export default defineConfig({
     // Look for test files in the "tests" directory, relative to this configuration file.
     testDir: "tests/e2e",
 
-    timeout: 10000,
+    timeout: 15000,
     // Run all tests in parallel.
-    fullyParallel: true,
+    fullyParallel: false,
     testMatch: "*tests/e2e/*.ts",
 
     // Fail the build on CI if you accidentally left test.only in the source code.

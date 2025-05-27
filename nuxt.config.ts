@@ -66,7 +66,7 @@ export default defineNuxtConfig({
                 ignored: [
                     "**/dist/**",
                     "**/tests/e2e/**",
-                    "**/playwright-reports/**",
+                    "**/playwright-report/**",
                     "**/test-results/**",
                 ],
             },

@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "test:playwright": "npx playwright test --config=playwright.config.ts"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.2",

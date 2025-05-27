@@ -15,6 +15,7 @@ export async function apiGet(
 
         const result = {} as { data?: NetworkInfoType; code: number };
         result.code = response.status;
+        console.log(response);
 
         if (response.status === 200) {
             result.data = response.data.result;
