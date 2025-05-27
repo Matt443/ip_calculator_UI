@@ -10,7 +10,7 @@ The goal of this project is to showcase an example UI for [Ip Calculator Api](ht
 
 ### **Frontend**
 
-- ![Nuxt](https://img.shields.io/badge/Nuxt-3.16-green?logo=nuxt.js&logoColor=white)[First project](https://img.shields.io/badge/First_Project-🚀-blue) – Powerful Vue-based framework
+- ![Nuxt](https://img.shields.io/badge/Nuxt-3.16-green?logo=nuxt.js&logoColor=white) ![First project](https://img.shields.io/badge/First_Project-🚀-blue) – Powerful Vue-based framework
 - ![Vue](https://img.shields.io/badge/Vue-3.5-%23308A43?logo=vue.js&logoColor=white) – Progressive UI framework
 - ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.1-%2338B2AC?logo=tailwind-css&logoColor=white) – Utility-first CSS framework
 - ![Pinia](https://img.shields.io/badge/Pinia-3.0-yellow?logo=vue.js&logoColor=white) – Vue state management alternative
