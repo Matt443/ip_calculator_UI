@@ -1,3 +1,9 @@
+## First project with:
+
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-%2338B2AC?logo=tailwind-css&logoColor=white)
+![Nuxt](https://img.shields.io/badge/Nuxt-3-green?logo=nuxt.js&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-1.40-purple?logo=microsoft&logoColor=white)
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
