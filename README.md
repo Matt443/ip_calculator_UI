@@ -1,81 +1,30 @@
-## First project with:
+# Nuxt App 🚀
 
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-%2338B2AC?logo=tailwind-css&logoColor=white)
-![Nuxt](https://img.shields.io/badge/Nuxt-3-green?logo=nuxt.js&logoColor=white)
-![Playwright](https://img.shields.io/badge/Playwright-1.40-purple?logo=microsoft&logoColor=white)
+A modern Nuxt project with Tailwind CSS, Playwright testing, and various powerful libraries.
 
-# Nuxt Minimal Starter
+## 📦 Tech Stack
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-6.13.2-%2338B2AC?logo=tailwind-css&logoColor=white)
+![Nuxt](https://img.shields.io/badge/Nuxt-3.16-green?logo=nuxt.js&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-1.52-purple?logo=microsoft&logoColor=white)
 
-## Setup
+## ✨ Features
 
-Make sure to install dependencies:
+- Nuxt 3 framework for modern Vue development
+- Tailwind CSS for styling
+- Pinia for state management
+- Playwright for end-to-end testing
+- Prettier & ESLint for code formatting & linting
+- TypeScript support
 
-```bash
-# npm
+## 🚀 Getting Started
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```sh
+git clone https://github.com/Matt443/ip_calculator_UI.git
+cd ip_calculator_UI
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
