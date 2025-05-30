@@ -1,4 +1,5 @@
 import type { Locator, Page } from "playwright-core";
+import { expect } from "vitest";
 
 /**
  *
@@ -199,4 +200,21 @@ export async function setSubnetsVLSM(
             .fill(String(hostQuantity));
         await page.locator(".vlsm-setting-container button").nth(0).click();
     }
+}
+
+/**
+ *
+ * @param {Page} page
+ * @returns {Promise<void>} - content of the .error-container
+ */
+export async function binaryError(
+    page: Page,
+    subpage: string = "/",
+): Promise<void> {
+    await page.goto(subpage);
+
+    await clickType(page, 0, 1);
+
+    await page.getByRole("button", { name: "Get complete ip info" }).click();
+    await page.waitForTimeout(3000);
 }
