@@ -191,6 +191,11 @@ export const useStateStore = defineStore("state", {
                         ...this.responses.conversions,
                         ...response.data,
                     };
+                if (
+                    this.conversions.resultType === "shorthand" &&
+                    this.responses.conversions.shorthand === -1
+                )
+                    this.responses.conversions.status = 400;
             }
         },
     },

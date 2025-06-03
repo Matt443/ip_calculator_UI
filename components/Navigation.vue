@@ -46,4 +46,9 @@ const items = [
     flex-direction: column;
     align-items: start;
 }
+.navigation-container {
+    div.absolute {
+        top: 30px;
+    }
+}
 </style>

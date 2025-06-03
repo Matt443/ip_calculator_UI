@@ -65,33 +65,34 @@ function checkResultType(): boolean {
                     }"
                     >{{ $t("inputs.button") }}</UButton
                 >
-                <div
-                    class="conversion-result-container flex lg:items-center justify-start flex-col lg:flex-row py-2"
-                    v-if="state.responses.conversions.status === 200"
-                >
-                    <span
-                        class="result-label whitespace-nowrap mr-2 text-left font-bold"
-                    >
-                        {{ $t("conversions.result.label") }}:
-                    </span>
-                    <IpWithOctets
-                        v-if="checkResultType()"
-                        :address="state.responses.conversions.separated"
-                    ></IpWithOctets>
-                    <NumberIp
-                        :container-class="''"
-                        :ip="
-                            String(
-                                state.responses.conversions[
-                                    state.conversions
-                                        .resultType as keyof ConversionResponseType
-                                ],
-                            )
-                        "
-                        v-if="!checkResultType()"
-                    ></NumberIp>
-                </div>
             </div>
+            <div
+                class="conversion-result-container flex lg:items-center justify-start flex-col lg:flex-row py-2"
+                v-if="state.responses.conversions.status === 200"
+            >
+                <span
+                    class="result-label whitespace-nowrap mr-2 text-left font-bold"
+                >
+                    {{ $t("conversions.result.label") }}:
+                </span>
+                <IpWithOctets
+                    v-if="checkResultType()"
+                    :address="state.responses.conversions.separated"
+                ></IpWithOctets>
+                <NumberIp
+                    :container-class="''"
+                    :ip="
+                        String(
+                            state.responses.conversions[
+                                state.conversions
+                                    .resultType as keyof ConversionResponseType
+                            ],
+                        )
+                    "
+                    v-if="!checkResultType()"
+                ></NumberIp>
+            </div>
+            <Error :code="state.responses.conversions.status"></Error>
         </div>
     </div>
 </template>

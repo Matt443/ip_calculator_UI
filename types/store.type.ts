@@ -49,6 +49,8 @@ export type SubnetsResponseType = { data: NetworkInfoType[] } & {
 export type ConversionResponseType = {
     joined: string[] | string;
     separated: number[] | string[];
+    decimal?: number;
+    shorthand?: number;
 } & {
     status: number;
 };
