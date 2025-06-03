@@ -1,21 +1,26 @@
 import axios from "axios";
-import type { NetworkInfoType } from "~/types/store.type";
+import type {
+    ConversionResponseType,
+    NetworkInfoType,
+} from "~/types/store.type";
 /**
  *
  * @param {string} url
  * @param {object} paramsObject - object with query parameters
- * @returns {Promise<{ data?: NetworkInfoType | NetworkInfoType[]; code: number }}
+ * @returns {Promise<{ data?: NetworkInfoType | NetworkInfoType[] | ConversionResponseType; code: number }}
  */
 export async function apiGet(
     url: string,
     paramsObject: object,
-): Promise<{ data?: NetworkInfoType | NetworkInfoType[]; code: number }> {
+): Promise<{
+    data?: NetworkInfoType | NetworkInfoType[] | ConversionResponseType;
+    code: number;
+}> {
     try {
         const response = await axios.get(url + createParams(paramsObject));
 
         const result = {} as { data?: NetworkInfoType; code: number };
         result.code = response.status;
-        console.log(response);
 
         if (response.status === 200) {
             result.data = response.data.result;

@@ -1,4 +1,6 @@
 import type {
+    ConversionResponseType,
+    ConversionsSettingType,
     IpStateType,
     IpType,
     LanguageType,
@@ -20,11 +22,15 @@ export const useStateStore = defineStore("state", {
             hostQuantity: 0,
             subnetsQuantity: 0,
         } as SubnetsSettingStateType,
+        conversions: {
+            resultType: "binary",
+        } as ConversionsSettingType,
         filters: [] as number[],
         responses: {
             networkInfo: { status: 0 } as NetworkInfoResponseType,
             subnets: { status: 0 } as SubnetsResponseType,
             subnetsVLSM: { status: 0 } as SubnetsResponseType,
+            conversions: { status: 0 } as ConversionResponseType,
         },
     }),
     getters: {
@@ -45,6 +51,9 @@ export const useStateStore = defineStore("state", {
         },
         getNetworkInfo(): NetworkInfoType {
             return this.responses.networkInfo;
+        },
+        getConversions(): ConversionsSettingType {
+            return this.conversions;
         },
     },
     actions: {
@@ -92,6 +101,10 @@ export const useStateStore = defineStore("state", {
         },
         removeAllFilters() {
             this.filters = [];
+        },
+        changeConversionsResult(newType: IpType) {
+            this.conversions.resultType = newType;
+            this.responses.conversions.status = 0;
         },
         async networkInfoApiCall() {
             const url: string = `${useRuntimeConfig().public.apiBase}/ip/networkInfo`;
@@ -164,6 +177,21 @@ export const useStateStore = defineStore("state", {
                     ...this.responses.subnetsVLSM,
                     data: [...response.data],
                 };
+        },
+        async conversionsApiCall() {
+            {
+                const url: string = `${useRuntimeConfig().public.apiBase}/ip/conversions/${this.conversions.resultType}`;
+                const response = await apiGet(url, {
+                    ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                    type: this.ip.type,
+                });
+                this.responses.conversions.status = response.code;
+                if (response.data)
+                    this.responses.conversions = {
+                        ...this.responses.conversions,
+                        ...response.data,
+                    };
+            }
         },
     },
 });

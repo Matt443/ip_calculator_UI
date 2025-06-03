@@ -3,6 +3,12 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 
 const items = [
     {
+        label: "Conversions",
+        icon: "",
+        class: "text-md font-bold",
+        to: "/conversions",
+    },
+    {
         label: "Calculations",
         icon: "",
         slot: "calculations" as const,
@@ -12,7 +18,11 @@ const items = [
 </script>
 
 <template>
-    <UNavigationMenu :items="items" class="w-full justify-center">
+    <UNavigationMenu
+        :items="items"
+        content-orientation="vertical"
+        class="w-full justify-center navigation-container"
+    >
         <template #calculations-content>
             <ul class="list-none m-0 p-0 pl-1 pt-2">
                 <li class="whitespace-nowrap text-sm my-2">
@@ -29,3 +39,11 @@ const items = [
         <template #calculations-label> </template>
     </UNavigationMenu>
 </template>
+
+<style lang="scss">
+.navigation-container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+</style>

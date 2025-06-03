@@ -46,5 +46,11 @@
     "0": "Your results will appear here.",
     "422": "Your data seems to be incorrect. The request cannot be processed.",
     "400": "Your data seems to be incorrect."
+  },
+  "conversions": {
+    "result": {
+      "type": "Result type",
+      "label": "Your converted ip address"
+    }
   }
 }

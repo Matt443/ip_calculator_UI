@@ -45,3 +45,14 @@ export type NetworkInfoResponseType = NetworkInfoType & { status: number };
 export type SubnetsResponseType = { data: NetworkInfoType[] } & {
     status: number;
 };
+
+export type ConversionResponseType = {
+    joined: string[] | string;
+    separated: number[] | string[];
+} & {
+    status: number;
+};
+
+export type ConversionsSettingType = {
+    resultType: IpType;
+};

@@ -46,5 +46,11 @@
     "0": "Ihre Ergebnisse werden hier angezeigt.",
     "422": "Ihre Daten scheinen falsch zu sein. Die Anfrage kann nicht verarbeitet werden.",
     "400": "Ihre Daten scheinen falsch zu sein."
+  },
+  "conversions": {
+    "result": {
+      "type": "Ergebnistyp",
+      "label": "Ihre umgewandelte IP-Adresse"
+    }
   }
 }
