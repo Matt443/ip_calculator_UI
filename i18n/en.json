@@ -51,6 +51,12 @@
     "result": {
       "type": "Result type",
       "label": "Your converted ip address"
+    },
+    "class": {
+      "label": "Recognized IP class",
+      "first": "First address in class",
+      "last": "Last address in class",
+      "mask": "Default subnet mask"
     }
   }
 }

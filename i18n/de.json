@@ -51,6 +51,12 @@
     "result": {
       "type": "Ergebnistyp",
       "label": "Ihre umgewandelte IP-Adresse"
+    },
+    "class": {
+      "label": "Erkannte IP-Klasse",
+      "first": "Erste Adresse der Klasse",
+      "last": "Letzte Adresse der Klasse",
+      "mask": "Standard-Subnetzmaske"
     }
   }
 }

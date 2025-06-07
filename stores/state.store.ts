@@ -1,4 +1,5 @@
 import type {
+    ClassResponseType,
     ConversionResponseType,
     ConversionsSettingType,
     IpStateType,
@@ -10,7 +11,6 @@ import type {
     SubnetsResponseType,
     SubnetsSettingStateType,
 } from "~/types/store.type";
-// import 'dotenv/config'
 
 export const useStateStore = defineStore("state", {
     state: () => ({
@@ -31,6 +31,7 @@ export const useStateStore = defineStore("state", {
             subnets: { status: 0 } as SubnetsResponseType,
             subnetsVLSM: { status: 0 } as SubnetsResponseType,
             conversions: { status: 0 } as ConversionResponseType,
+            class: { status: 0 } as ClassResponseType,
         },
     }),
     getters: {
@@ -179,23 +180,40 @@ export const useStateStore = defineStore("state", {
                 };
         },
         async conversionsApiCall() {
+            const url: string = `${useRuntimeConfig().public.apiBase}/ip/conversions/${this.conversions.resultType}`;
+            const response = await apiGet(url, {
+                ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                type: this.ip.type,
+            });
+            this.responses.conversions.status = response.code;
+            if (response.data)
+                this.responses.conversions = {
+                    ...this.responses.conversions,
+                    ...response.data,
+                };
+            if (
+                this.conversions.resultType === "shorthand" &&
+                this.responses.conversions.shorthand === -1
+            )
+                this.responses.conversions.status = 400;
+        },
+        async getIpClass() {
+            const url: string = `${useRuntimeConfig().public.apiBase}/ip/class`;
+            const response = await apiGet(url, {
+                ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
+                type: this.ip.type,
+            });
+            this.responses.class.status = response.code;
             {
-                const url: string = `${useRuntimeConfig().public.apiBase}/ip/conversions/${this.conversions.resultType}`;
-                const response = await apiGet(url, {
-                    ip: anyIp[this.ip.type].prepareToSend(this.ip.address),
-                    type: this.ip.type,
-                });
-                this.responses.conversions.status = response.code;
-                if (response.data)
-                    this.responses.conversions = {
-                        ...this.responses.conversions,
-                        ...response.data,
-                    };
-                if (
-                    this.conversions.resultType === "shorthand" &&
-                    this.responses.conversions.shorthand === -1
-                )
-                    this.responses.conversions.status = 400;
+            }
+            if (response.data) {
+                this.responses.class = {
+                    ...this.responses.class,
+                    ...response.data,
+                };
+            } else {
+                this.responses.class.status = 0;
+                this.responses.class.name = "-";
             }
         },
     },

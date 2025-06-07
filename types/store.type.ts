@@ -51,8 +51,19 @@ export type ConversionResponseType = {
     separated: number[] | string[];
     decimal?: number;
     shorthand?: number;
-} & {
     status: number;
+};
+
+export type ClassResponseType = ClassDetailsType & {
+    status: number;
+};
+
+export type ClassDetailsType = {
+    name: "A" | "B" | "C" | "D" | "-";
+    min: number[];
+    max: number[];
+    hostQuantity: number;
+    defaultMask?: number[];
 };
 
 export type ConversionsSettingType = {

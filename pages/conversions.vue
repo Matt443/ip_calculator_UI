@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { buttonClasses } from "~/consts/tailwind.const";
 import type { IpSettingType } from "~/types/props.type";
-import type { ConversionResponseType } from "~/types/store.type";
 
 const state = useStateStore();
 
@@ -18,14 +17,6 @@ const ipInputConfig: IpSettingType = {
         label: "inputs.ip.label",
     },
 };
-function checkResultType(): boolean {
-    if (
-        state.conversions.resultType === "binary" ||
-        state.conversions.resultType === "default"
-    )
-        return true;
-    return false;
-}
 </script>
 
 <template>
@@ -57,6 +48,7 @@ function checkResultType(): boolean {
                         (e) => {
                             e.preventDefault();
                             state.conversionsApiCall();
+                            state.getIpClass();
                         }
                     "
                     :ui="{
@@ -66,32 +58,7 @@ function checkResultType(): boolean {
                     >{{ $t("inputs.button") }}</UButton
                 >
             </div>
-            <div
-                class="conversion-result-container flex lg:items-center justify-start flex-col lg:flex-row py-2"
-                v-if="state.responses.conversions.status === 200"
-            >
-                <span
-                    class="result-label whitespace-nowrap mr-2 text-left font-bold"
-                >
-                    {{ $t("conversions.result.label") }}:
-                </span>
-                <IpWithOctets
-                    v-if="checkResultType()"
-                    :address="state.responses.conversions.separated"
-                ></IpWithOctets>
-                <NumberIp
-                    :container-class="''"
-                    :ip="
-                        String(
-                            state.responses.conversions[
-                                state.conversions
-                                    .resultType as keyof ConversionResponseType
-                            ],
-                        )
-                    "
-                    v-if="!checkResultType()"
-                ></NumberIp>
-            </div>
+            <ConversionsResult></ConversionsResult>
             <Error :code="state.responses.conversions.status"></Error>
         </div>
     </div>

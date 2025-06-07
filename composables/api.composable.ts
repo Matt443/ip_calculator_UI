@@ -1,5 +1,6 @@
 import axios from "axios";
 import type {
+    ClassResponseType,
     ConversionResponseType,
     NetworkInfoType,
 } from "~/types/store.type";
@@ -13,7 +14,11 @@ export async function apiGet(
     url: string,
     paramsObject: object,
 ): Promise<{
-    data?: NetworkInfoType | NetworkInfoType[] | ConversionResponseType;
+    data?:
+        | NetworkInfoType
+        | NetworkInfoType[]
+        | ConversionResponseType
+        | ClassResponseType;
     code: number;
 }> {
     try {
