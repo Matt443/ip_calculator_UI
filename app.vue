@@ -12,6 +12,11 @@ useSeoMeta({
     ogImage: "https://ip-calculator.marcinregula.de/icon.png",
     twitterCard: "summary_large_image",
 });
+
+useHead({
+    htmlAttrs: { lang: "en" },
+    link: [{ rel: "canonical", href: "https://ip-calculator.marcinregula.de" }],
+});
 </script>
 
 <template>

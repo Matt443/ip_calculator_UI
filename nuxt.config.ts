@@ -29,13 +29,13 @@ export default defineNuxtConfig({
     modules: [
         "@nuxt/eslint",
         "@nuxt/ui",
-
         "@nuxt/icon",
         "@nuxt/fonts",
         "@nuxt/test-utils",
         "@pinia/nuxt",
         "@nuxt/test-utils/module",
         "@nuxtjs/i18n",
+        "@nuxtjs/seo",
     ],
     i18n: {
         defaultLocale: "de",
@@ -70,6 +70,11 @@ export default defineNuxtConfig({
                     "**/test-results/**",
                 ],
             },
+        },
+    },
+    app: {
+        head: {
+            titleTemplate: "%s",
         },
     },
 });
