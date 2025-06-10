@@ -218,3 +218,104 @@ export async function binaryError(
     await page.getByRole("button", { name: "Get complete ip info" }).click();
     await page.waitForTimeout(3000);
 }
+
+export const conversions = {
+    /**
+     *
+     * @param {Page} page
+     * @param {string} toFill
+     * @param {number} inputType
+     * @param {number} outputType
+     * @returns {void}
+     */
+    async numberIp(
+        page: Page,
+        toFill: string,
+        inputType: number = 0,
+        outputType: number = 0,
+    ) {
+        await page.goto("/conversions");
+
+        //Set input data type to inputType
+        await clickType(page, 0, inputType);
+
+        //Set output data type to outputType
+        await clickType(page, 1, outputType);
+        await page
+            .locator(".inputs-container")
+            .nth(0)
+            .locator(".number-input-container input")
+            .nth(0)
+            .fill(toFill);
+
+        page.getByRole("button", { name: "Get complete ip info" }).click();
+
+        await page.waitForSelector(".conversion-result-container", {
+            timeout: 15000,
+        });
+    },
+    /**
+     *
+     * @param {Page} page
+     * @param {string[]} toFill
+     * @param {number} inputType
+     * @param {number} outputType
+     * @returns {void}
+     */
+    async binary(
+        page: Page,
+        toFill: string[],
+        inputType: number = 0,
+        outputType: number = 0,
+    ) {
+        await page.goto("/conversions");
+
+        //Set input data type to inputType
+        await clickType(page, 0, inputType);
+
+        //Set output data type to outputType
+        await clickType(page, 1, outputType);
+
+        const allInputs: Locator[] = await getAllInputs(
+            page,
+            "binary-inputs-container",
+            "binary-input-container",
+        );
+        await fillAllInputs(allInputs, toFill);
+
+        page.getByRole("button", { name: "Get complete ip info" }).click();
+
+        await page.waitForSelector(".conversion-result-container", {
+            timeout: 15000,
+        });
+    },
+    /**
+     *
+     * @param {Page} page
+     * @param {string[]} toFill
+     * @param {number} outputType
+     * @returns {void}
+     */
+    async default(page: Page, toFill: string[], outputType: number = 0) {
+        await page.goto("/conversions");
+
+        await clickType(page, 1, outputType);
+
+        const inputsParent = await page.locator(
+            ".inputs-container .ipv4-input-container",
+        );
+
+        let i = 0;
+
+        for (const index in toFill) {
+            await inputsParent.locator("input").nth(i).fill(toFill[index]);
+            i++;
+        }
+
+        page.getByRole("button", { name: "Get complete ip info" }).click();
+
+        await page.waitForSelector(".conversion-result-container", {
+            timeout: 15000,
+        });
+    },
+};
