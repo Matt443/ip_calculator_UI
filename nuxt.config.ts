@@ -77,4 +77,12 @@ export default defineNuxtConfig({
             titleTemplate: "%s",
         },
     },
+    sitemap: {
+        urls: [
+            { loc: "https://ip-calculator.marcinregula.de/" },
+            { loc: "https://ip-calculator.marcinregula.de/subnets" },
+            { loc: "https://ip-calculator.marcinregula.de/subnetsVLSM" },
+            { loc: "https://ip-calculator.marcinregula.de/conversions" },
+        ],
+    },
 });

@@ -52,4 +52,5 @@ Clone the repository and install dependencies:
 git clone https://github.com/Matt443/ip_calculator_UI.git
 cd ip_calculator_UI
 npm install
+npm run dev
 ```
