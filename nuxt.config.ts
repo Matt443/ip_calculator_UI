@@ -26,7 +26,6 @@ export default defineNuxtConfig({
             fallback: "404.html", // Ensures unknown routes don't break
         },
     },
-
     modules: [
         "@nuxt/eslint",
         "@nuxt/ui",
