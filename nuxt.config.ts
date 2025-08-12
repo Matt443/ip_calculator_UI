@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     ssr: true,
     css: ["@/assets/css/main.css", "@mdi/font/css/materialdesignicons.css"],
+    site: { url: "https://ip-calculator.marcinregula.de" },
     alias: {
         "@config": "./config",
         "@assets": "./assets",
